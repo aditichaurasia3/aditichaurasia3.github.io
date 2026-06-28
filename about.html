@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Aditi Chaurasia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Mulish:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-header {
+      padding: 50px 0 10px;
+    }
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 30px;
+      color: var(--color-green-dark);
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      max-width: 560px;
+    }
+    .about-blurb {
+      padding: 20px 0 10px;
+      font-size: 14px;
+      color: var(--color-text-muted);
+      max-width: 620px;
+    }
+    .about-blurb p {
+      margin-bottom: 14px;
+    }
+    .map-section {
+      padding: 36px 0 60px;
+    }
+    .map-section h2 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--color-green);
+      margin-bottom: 6px;
+    }
+    .map-section .map-sub {
+      font-size: 13px;
+      color: var(--color-text-faint);
+      margin-bottom: 16px;
+    }
+    #travel-map {
+      height: 420px;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      z-index: 1;
+    }
+    .leaflet-popup-content-wrapper {
+      border-radius: 10px;
+      font-family: var(--font-sans);
+    }
+    .popup-title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--color-green-dark);
+      margin-bottom: 4px;
+    }
+    .popup-note {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <nav class="site-nav">
+      <a href="index.html" class="logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22V12M12 12C12 7 16 4 20 4C20 9 17 12 12 12ZM12 12C12 8 9 6 5 6C5 10 8 12 12 12Z" stroke="#3D7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        aditi chaurasia
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html" class="active">About</a>
+      </div>
+    </nav>
+
+    <header class="page-header">
+      <div class="eyebrow">🌍 About</div>
+      <h1>A bit more about me</h1>
+    </header>
+
+    <section class="about-blurb">
+      <p>Outside of spreadsheets, I'm probably planning a trip, mid-trip, or recovering from a trip. Replace this with your real bio — favorite places, hobbies, whatever makes you, you.</p>
+      <p>Click a pin on the map below for a note about that trip.</p>
+    </section>
+
+    <section class="map-section">
+      <h2>Where I've been</h2>
+      <div class="map-sub">Click any pin for details. Replace the placeholder pins in js/travel-map.js with your real trips.</div>
+      <div id="travel-map"></div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      &copy; 2026 Aditi Chaurasia
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+  <script src="js/travel-map.js"></script>
+</body>
+</html>

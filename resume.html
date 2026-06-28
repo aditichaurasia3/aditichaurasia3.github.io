@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume — Aditi Chaurasia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Mulish:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-header {
+      padding: 50px 0 10px;
+    }
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 30px;
+      color: var(--color-green-dark);
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      max-width: 520px;
+    }
+    .resume-section {
+      padding: 36px 0 8px;
+    }
+    .resume-section h2 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--color-green);
+      margin-bottom: 16px;
+    }
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .exp-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 18px 22px;
+      cursor: pointer;
+      transition: border-color 0.15s ease;
+    }
+    .exp-card:hover {
+      border-color: var(--color-green-mid);
+    }
+    .exp-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .exp-card-title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--color-green-dark);
+    }
+    .exp-card-sub {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-top: 3px;
+    }
+    .exp-card-meta {
+      font-size: 12px;
+      color: var(--color-text-faint);
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .exp-toggle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--color-green-light);
+      color: var(--color-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .exp-card.open .exp-toggle {
+      transform: rotate(45deg);
+    }
+    .exp-card-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+    .exp-card.open .exp-card-details {
+      max-height: 400px;
+    }
+    .exp-card-details-inner {
+      padding-top: 14px;
+      margin-top: 14px;
+      border-top: 1px solid var(--color-border);
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+    .exp-card-details-inner ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .exp-card-details-inner li::before {
+      content: "— ";
+      color: var(--color-green-mid);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <nav class="site-nav">
+      <a href="index.html" class="logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22V12M12 12C12 7 16 4 20 4C20 9 17 12 12 12ZM12 12C12 8 9 6 5 6C5 10 8 12 12 12Z" stroke="#3D7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        aditi chaurasia
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="resume.html" class="active">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+      </div>
+    </nav>
+
+    <header class="page-header">
+      <div class="eyebrow">📄 Resume</div>
+      <h1>Experience &amp; involvement</h1>
+      <p>Click any card to see the details. Replace this placeholder content with your actual roles whenever you're ready.</p>
+    </header>
+
+    <section class="resume-section">
+      <h2>Experience</h2>
+      <div class="card-list">
+
+        <div class="exp-card">
+          <div class="exp-card-top">
+            <div>
+              <div class="exp-card-title">People Analytics Associate — Example Corp</div>
+              <div class="exp-card-sub">Building attrition models and engagement dashboards</div>
+              <div class="exp-card-meta">2023 — Present</div>
+            </div>
+            <div class="exp-toggle">+</div>
+          </div>
+          <div class="exp-card-details">
+            <div class="exp-card-details-inner">
+              <ul>
+                <li>Built a logistic regression attrition model flagging flight risk 60 days early, used across 3 business units</li>
+                <li>Designed and ran the quarterly engagement survey for 1,200+ employees</li>
+                <li>Partnered with HRBPs to translate survey findings into manager action plans</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-card-top">
+            <div>
+              <div class="exp-card-title">Research Assistant — University Lab</div>
+              <div class="exp-card-sub">Organizational behavior research</div>
+              <div class="exp-card-meta">2021 — 2023</div>
+            </div>
+            <div class="exp-toggle">+</div>
+          </div>
+          <div class="exp-card-details">
+            <div class="exp-card-details-inner">
+              <ul>
+                <li>Co-authored a survey methodology paper on response bias in workplace engagement surveys</li>
+                <li>Cleaned and analyzed a 5-year longitudinal dataset of 4,000 respondents</li>
+                <li>Presented findings at two academic conferences</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <h2>Involvement</h2>
+      <div class="card-list">
+
+        <div class="exp-card">
+          <div class="exp-card-top">
+            <div>
+              <div class="exp-card-title">Mentor — Women in Data</div>
+              <div class="exp-card-sub">Mentoring early-career analysts</div>
+              <div class="exp-card-meta">2022 — Present</div>
+            </div>
+            <div class="exp-toggle">+</div>
+          </div>
+          <div class="exp-card-details">
+            <div class="exp-card-details-inner">
+              <ul>
+                <li>Mentor 2-3 early-career analysts per cohort on technical and career growth</li>
+                <li>Lead a quarterly workshop on translating data into stakeholder-ready stories</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      &copy; 2026 Aditi Chaurasia
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

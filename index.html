@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditi Chaurasia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Mulish:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero {
+      padding: 90px 0 70px;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 40px;
+      line-height: 1.25;
+      color: var(--color-green-dark);
+      max-width: 620px;
+      margin-bottom: 18px;
+    }
+    .hero p {
+      font-size: 15px;
+      color: var(--color-text-muted);
+      max-width: 480px;
+      margin-bottom: 26px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .highlights {
+      padding: 10px 0 70px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .highlight-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .highlight-card h3 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--color-green-dark);
+      margin-bottom: 6px;
+    }
+    .highlight-card p {
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 30px; }
+      .highlights { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <nav class="site-nav">
+      <a href="index.html" class="logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22V12M12 12C12 7 16 4 20 4C20 9 17 12 12 12ZM12 12C12 8 9 6 5 6C5 10 8 12 12 12Z" stroke="#3D7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        aditi chaurasia
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow">🌱 People analytics &middot; research &middot; operations</div>
+      <h1>Hi, I'm Aditi.<br>I turn people data into decisions that actually stick.</h1>
+      <p>I'm a people analytics and research professional who loves messy datasets, clean dashboards, and the moments where data convinces a room to change its mind. Based in the Bay Area, always curious.</p>
+      <div class="hero-actions">
+        <a href="projects.html" class="btn btn-primary">View projects</a>
+        <a href="resume.html" class="btn btn-outline">See my resume</a>
+      </div>
+    </section>
+
+    <section class="highlights">
+      <div class="highlight-card">
+        <h3>📊 What I do</h3>
+        <p>I build the analytical backbone for people decisions: attrition models, engagement surveys, org design data.</p>
+      </div>
+      <div class="highlight-card">
+        <h3>🔍 What I'm curious about</h3>
+        <p>Behavioral research, survey methodology, and how data quietly shapes culture.</p>
+      </div>
+      <div class="highlight-card">
+        <h3>🌍 Outside of work</h3>
+        <p>Collecting passport stamps and tracking them on an embarrassingly detailed map (see About).</p>
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      &copy; 2026 Aditi Chaurasia
+    </div>
+  </footer>
+
+</body>
+</html>

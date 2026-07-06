@@ -30,6 +30,10 @@ body {
   line-height: 1.6;
 }
 
+h1, h2, h3 {
+  color: var(--color-green-dark);
+}
+
 
 
 a {
@@ -52,10 +56,17 @@ img {
 }
 
 .highlight-card {
-  background: var(--color-card);
+  background: var(--color-green-light);
   border: 1.5px solid var(--color-green);
   border-radius: 14px;
   padding: 22px;
+}
+
+.hero p {
+  font-size: 15px;
+  color: var(--color-green-mid);
+  max-width: 480px;
+  margin-bottom: 26px;
 }
 
 /* ============================
@@ -76,7 +87,10 @@ img {
   font-family: var(--font-serif);
   font-weight: 600;
   font-size: 18px;
-  color: var(--color-green-dark);
+  color: var(--color-bg);
+  background: var(--color-green);
+  padding: 6px 14px;
+  border-radius: 20px;
 }
 
 .logo svg {
@@ -97,6 +111,8 @@ img {
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--color-green);
+  border-bottom: 2px solid var(--color-green);
+  padding-bottom: 4px;
 }
 
 /* ============================
@@ -135,12 +151,16 @@ img {
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 600;
-  color: var(--color-green-mid);
+  color: var(--color-green-dark);
+  background: var(--color-green-light);
   letter-spacing: 0.03em;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  width: fit-content;
 }
 
 /* ============================
@@ -153,7 +173,6 @@ img {
   color: var(--color-text-faint);
   border-top: 2px solid var(--color-green);
   background: var(--color-green-light);
-}
 }
 
 /* ============================

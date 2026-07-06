@@ -86,11 +86,8 @@ img {
   gap: 8px;
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 18px;
-  color: var(--color-bg);
-  background: var(--color-green);
-  padding: 6px 14px;
-  border-radius: 20px;
+  font-size: 26px;
+  color: var(--color-green-dark);
 }
 
 .logo svg {
@@ -147,20 +144,11 @@ img {
 /* ============================
    Eyebrow label
    ============================ */
-.eyebrow {
-  font-family: var(--font-sans);
+.site-footer {
+  padding: 24px 0;
+  margin-top: 60px;
   font-size: 13px;
-  font-weight: 600;
-  color: var(--color-green-dark);
-  background: var(--color-green-light);
-  letter-spacing: 0.03em;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 20px;
-  width: fit-content;
+  color: var(--color-text-faint);
 }
 
 /* ============================

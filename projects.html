@@ -155,33 +155,56 @@
         </div>
       </div>
 
-      <div class="project-card">
-        <span class="project-tag">Predictive modeling</span>
-        <h3>Attrition risk model</h3>
-        <p>Built a logistic regression model to flag flight risk 60 days before resignation, giving managers time to intervene.</p>
-        <div class="project-stack">Python &middot; scikit-learn &middot; Tableau</div>
+      <div class="project-card expandable" style="grid-column: 1 / -1;">
+        <span class="project-tag">Deep learning &middot; PyTorch</span>
+        <h3>Transformer Encoder/Decoder from Scratch</h3>
+        <p>Implemented the core building blocks of the Transformer architecture (from the original <em>"Attention Is All You Need"</em> paper) in PyTorch, then trained it to perform English&rarr;German machine translation on the Multi30K dataset. Wrote scaled dot-product attention, multi-head attention, positional embeddings, and full encoder/decoder blocks by hand &mdash; no pre-built transformer libraries.</p>
+        <div class="project-stack">PyTorch &middot; Transformers &middot; NLP &middot; SentencePiece Tokenization</div>
+
+        <button class="project-toggle" data-target="detail-transformer" style="margin-top: 14px;">
+          <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
+        </button>
+
+        <div class="project-detail" id="detail-transformer">
+          <div class="project-detail-inner">
+
+            <div class="snippet-label">Scaled dot-product attention (the core attention mechanism)</div>
+            <div class="code-block"><pre><span class="cm"># Y = softmax(mask(Q @ K^T) / sqrt(d)) @ V</span>
+<span class="kw">def</span> forward(self, queries, keys, values, mask=<span class="kw">None</span>):
+    key_dim = torch.tensor(keys.shape[-<span class="fn">1</span>], dtype=torch.float32)
+
+    sim = (queries @ keys.transpose(-<span class="fn">2</span>, -<span class="fn">1</span>)) / torch.sqrt(key_dim)
+    masked_sim = self.apply_mask(sim, mask=mask)
+    attn_weights = F.softmax(masked_sim, dim=-<span class="fn">1</span>)
+    output = attn_weights @ values
+
+    <span class="kw">return</span> output, attn_weights</pre></div>
+
+            <div class="snippet-label">Multi-head attention: splitting &amp; recombining across heads</div>
+            <div class="code-block"><pre><span class="kw">def</span> _split_heads(self, tensor):
+    <span class="cm"># tensor: [batch, seq_len, d] -> [batch, n_heads, seq_len, d_head]</span>
+    batch_size, tensorlen = tensor.shape[<span class="fn">0</span>], tensor.shape[<span class="fn">1</span>]
+    d_head = tensor.shape[<span class="fn">2</span>] // self.n_heads
+
+    tensor_split = tensor.reshape(batch_size, tensorlen, self.n_heads, d_head)
+    tensor_split = tensor_split.transpose(<span class="fn">1</span>, <span class="fn">2</span>)
+    <span class="kw">return</span> tensor_split
+
+<span class="kw">def</span> _combine_heads(self, tensor_split):
+    <span class="cm"># inverse of _split_heads: recombine per-head outputs</span>
+    size = tensor_split.shape[<span class="fn">0</span>]
+    lens = tensor_split.shape[<span class="fn">2</span>]
+    d_head = tensor_split.shape[<span class="fn">3</span>]
+
+    tensor_combined = tensor_split.transpose(<span class="fn">1</span>, <span class="fn">2</span>)
+    tensor_combined = tensor_combined.reshape(size, lens, self.n_heads * d_head)
+    <span class="kw">return</span> tensor_combined</pre></div>
+
+          </div>
+        </div>
       </div>
 
-      <div class="project-card">
-        <span class="project-tag">Dashboard</span>
-        <h3>Engagement dashboard</h3>
-        <p>Self-serve dashboard for managers to track team engagement scores, cutting manual reporting time by 70%.</p>
-        <div class="project-stack">SQL &middot; Looker &middot; Python</div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-tag">Research</span>
-        <h3>Survey methodology study</h3>
-        <p>Co-authored a study on response bias in workplace engagement surveys, presented at two conferences.</p>
-        <div class="project-stack">R &middot; Qualtrics &middot; SPSS</div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-tag">Personal</span>
-        <h3>Year-in-review data viz</h3>
-        <p>An annual personal dashboard tracking habits, travel, and reading — built mostly to satisfy my own curiosity.</p>
-        <div class="project-stack">Python &middot; Plotly</div>
-      </div>
+     
 
     </section>
   </div>

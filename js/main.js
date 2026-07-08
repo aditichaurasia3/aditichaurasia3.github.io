@@ -13,3 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+// Add this to js/main.js — toggles the code/output detail panel on project cards
+document.querySelectorAll('.project-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const detail = document.getElementById(btn.dataset.target);
+    const isOpen = detail.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.querySelector('.btn-label').textContent = isOpen ? 'Hide code' : 'View code';
+  });
+});

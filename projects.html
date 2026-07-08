@@ -262,6 +262,63 @@
         </div>
       </div>
 
+
+      <div class="project-card expandable" style="grid-column: 1 / -1;">
+        <span class="project-tag">Regression &middot; Algorithmic Fairness</span>
+        <h3>Auditing a Housing Assessment Model for Bias</h3>
+        <p>Built a linear regression model to predict home sale prices for Cook County, Illinois (home of Chicago) &mdash; the same kind of model the Cook County Assessor's Office uses to set property tax assessments. In 2017, the CCAO was sued for producing racially discriminatory assessments that systematically overvalued inexpensive homes and undervalued expensive ones (a pattern known as regressive taxation). After building the model, I audited its errors across price brackets to check whether it reproduced that same regressive pattern &mdash; it did.</p>
+        <div class="project-stack">Python &middot; pandas &middot; scikit-learn &middot; Linear Regression &middot; Feature Engineering</div>
+
+        <button class="project-toggle" data-target="detail-cookcounty" style="margin-top: 14px;">
+          <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
+        </button>
+
+        <div class="project-detail" id="detail-cookcounty">
+          <div class="project-detail-inner">
+
+            <div class="snippet-label">Feature engineering: extracting bedroom counts from free-text descriptions</div>
+            <div class="code-block"><pre><span class="kw">def</span> add_total_bedrooms(data):
+    <span class="cm"># "Bedrooms" isn't a column -- it's buried in a free-text</span>
+    <span class="cm"># "Description" field, so we pull it out with a regex.</span>
+    with_rooms = data.copy()
+    with_rooms[<span class="fn">'Bedrooms'</span>] = with_rooms[<span class="fn">'Description'</span>].str.extract(
+        <span class="fn">r'(\d+) of which are bedroom'</span>
+    )
+    with_rooms[<span class="fn">'Bedrooms'</span>] = with_rooms[<span class="fn">'Bedrooms'</span>].fillna(<span class="fn">0</span>).astype(<span class="kw">int</span>)
+    <span class="kw">return</span> with_rooms</pre></div>
+
+            <div class="snippet-label">Auditing the model: RMSE and overestimation rate by price bracket</div>
+            <div class="code-block"><pre><span class="kw">def</span> rmse_interval(df, start, end):
+    <span class="cm"># RMSE for homes whose true log sale price falls in [start, end]</span>
+    subset = df[(df[<span class="fn">'True Log Sale Price'</span>] >= start) & (df[<span class="fn">'True Log Sale Price'</span>] <= end)]
+    <span class="kw">return</span> np.sqrt(np.mean((subset[<span class="fn">'Predicted Log Sale Price'</span>] - subset[<span class="fn">'True Log Sale Price'</span>]) ** <span class="fn">2</span>))
+
+<span class="kw">def</span> prop_overest_interval(df, start, end):
+    <span class="cm"># What fraction of homes in this bracket did the model overvalue?</span>
+    subset = df[(df[<span class="fn">'True Log Sale Price'</span>] >= start) & (df[<span class="fn">'True Log Sale Price'</span>] <= end)]
+    <span class="kw">return</span> np.mean(subset[<span class="fn">'Predicted Log Sale Price'</span>] > subset[<span class="fn">'True Log Sale Price'</span>])</pre></div>
+
+            <div class="snippet-label">Results: does the model reproduce regressive taxation?</div>
+            <div class="output-table-wrap">
+              <table class="output-table">
+                <thead>
+                  <tr><th>Price bracket</th><th>Homes overestimated</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Cheaper half of homes</td><td class="output-flag-true">63.9%</td></tr>
+                  <tr><td>More expensive half of homes</td><td>29.99%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="font-size: 12.5px; color: var(--color-text-muted); margin-top: 10px;">Training RMSE: 53,722 (on Sale Price, delogged). Cheaper homes were overvalued more than twice as often as expensive homes &mdash; the same regressive pattern at the center of the real CCAO lawsuit.</p>
+
+            <div class="snippet-label">RMSE and overestimation rate across price brackets</div>
+            <img src="img/rmse-overestimation-chart.png" alt="Two bar charts: RMSE by log sale price interval, and percentage of house values overestimated by log sale price interval, both showing higher error and overestimation rates for cheaper homes" style="border-radius: 10px; border: 1px solid var(--color-border); margin-top: 4px;">
+
+          </div>
+        </div>
+      </div>
+
      
 
     </section>

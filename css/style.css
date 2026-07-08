@@ -155,6 +155,133 @@ img {
   margin-bottom: 18px;
 }
 
+
+/* ============================
+   Expandable project cards (code + output)
+   Add this block to css/style.css
+   ============================ */
+
+.project-card.expandable {
+  cursor: default;
+}
+
+.project-toggle {
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--color-green);
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.project-toggle:hover {
+  color: var(--color-green-dark);
+}
+
+.project-toggle .chevron {
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.project-toggle.open .chevron {
+  transform: rotate(90deg);
+}
+
+.project-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.project-detail.open {
+  max-height: 2400px;
+}
+
+.project-detail-inner {
+  padding-top: 18px;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.snippet-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-green-mid);
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+
+.snippet-label:first-child {
+  margin-top: 0;
+}
+
+.code-block {
+  background: var(--color-green-dark);
+  border-radius: 10px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  margin-bottom: 4px;
+}
+
+.code-block pre {
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--color-green-light);
+  white-space: pre;
+}
+
+.code-block .kw   { color: #8FD3B6; font-weight: 600; }  /* keywords */
+.code-block .fn   { color: #E9D28A; }                    /* functions */
+.code-block .cm   { color: #6FA98C; font-style: italic; } /* comments */
+
+.output-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.output-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.output-table th {
+  background: var(--color-green-light);
+  color: var(--color-green-dark);
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.output-table td {
+  padding: 7px 12px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.output-table tr:nth-child(even) {
+  background: #FCFBF8;
+}
+
+.output-flag-true {
+  color: #B4472B;
+  font-weight: 600;
+}
+
+.output-flag-false {
+  color: var(--color-text-faint);
+}
+
 /* ============================
    Footer
    ============================ */

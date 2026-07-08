@@ -204,6 +204,64 @@
         </div>
       </div>
 
+      <div class="project-card expandable" style="grid-column: 1 / -1;">
+        <span class="project-tag">Deep learning &middot; Computer Vision</span>
+        <h3>Vision Transformer &amp; Masked Autoencoder</h3>
+        <p>Implemented a Vision Transformer (ViT) and a Masked Autoencoder (MAE) from scratch in PyTorch, then compared three training strategies on CIFAR-10 image classification: supervised ViT from scratch, MAE self-supervised pretraining + linear probing, and full finetuning. The self-supervised MAE model learns to reconstruct images from as little as 25% of the original pixels.</p>
+        <div class="project-stack">PyTorch &middot; Vision Transformers &middot; Self-Supervised Learning &middot; einops</div>
+
+        <button class="project-toggle" data-target="detail-vitmae" style="margin-top: 14px;">
+          <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
+        </button>
+
+        <div class="project-detail" id="detail-vitmae">
+          <div class="project-detail-inner">
+
+            <div class="snippet-label">Splitting images into patches (the first step of ViT)</div>
+            <div class="code-block"><pre><span class="kw">def</span> patchify(images, patch_size=<span class="fn">4</span>):
+    <span class="cm"># images: [batch, channels, height, width]</span>
+    <span class="cm"># -> [batch, num_patches, patch_pixels]</span>
+    patches = rearrange(
+        images, <span class="fn">"b c (h hp) (w wp) -> b (h w) (c hp wp)"</span>,
+        hp=patch_size, wp=patch_size,
+    )
+    <span class="kw">return</span> patches</pre></div>
+
+            <div class="snippet-label">Random masking for MAE pretraining (mask 75% of patches, keep the rest)</div>
+            <div class="code-block"><pre><span class="kw">def</span> random_masking(x, keep_length, ids_shuffle):
+    <span class="cm"># x: (batch, length, feature) input patches</span>
+    <span class="cm"># keep_length: number of unmasked patches to keep</span>
+    <span class="cm"># ids_shuffle: random permutation controlling which patches are masked</span>
+    shuffled = index_sequence(x, ids_shuffle)
+    kept = shuffled[:, :keep_length]
+
+    mask = torch.ones(x.shape[:<span class="fn">2</span>], device=x.device)
+    mask[:, :keep_length] = <span class="fn">0</span>
+    ids_restore = torch.argsort(ids_shuffle, dim=<span class="fn">1</span>)
+    mask = index_sequence(mask, ids_restore)
+
+    <span class="kw">return</span> kept, mask, ids_restore</pre></div>
+
+            <div class="snippet-label">Results: three training strategies compared on CIFAR-10</div>
+            <div class="output-table-wrap">
+              <table class="output-table">
+                <thead>
+                  <tr><th>Strategy</th><th>Description</th><th>Val accuracy</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>V1</td><td>ViT, trained supervised from scratch</td><td>80.6%</td></tr>
+                  <tr><td>V2</td><td>MAE pretrained, then linear probing</td><td>63.9%</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="snippet-label">MAE reconstructions: masking 75% of an image, then reconstructing it</div>
+            <img src="img/mae-reconstruction.png" alt="MAE reconstruction examples: ground truth, masked input, and reconstructed output for several CIFAR-10 images" style="border-radius: 10px; border: 1px solid var(--color-border); margin-top: 4px;">
+
+          </div>
+        </div>
+      </div>
+
      
 
     </section>

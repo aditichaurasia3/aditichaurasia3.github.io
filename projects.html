@@ -95,6 +95,66 @@
 
     <section class="project-grid">
 
+      <div class="project-card expandable" style="grid-column: 1 / -1;">
+        <span class="project-tag">Data cleaning &middot; SQL</span>
+        <h3>Data Cleaning &amp; Transformation at Scale</h3>
+        <p>Worked with a real building-sensor dataset from a multi-year Berkeley research study &mdash; a genuinely messy real-world database with billions of readings, inconsistent metadata, and OCR errors baked into the source tables. Cleaned it up using entity resolution, outlier detection, missing-data imputation, and ontology roll-up queries &mdash; all in raw Postgres SQL, no pandas shortcuts.</p>
+        <div class="project-stack">PostgreSQL &middot; CTEs &middot; Window Functions &middot; Recursive Queries</div>
+
+        <button class="project-toggle" data-target="detail-data101" style="margin-top: 14px;">
+          <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
+        </button>
+
+        <div class="project-detail" id="detail-data101">
+          <div class="project-detail-inner">
+
+            <div class="snippet-label">Outlier detection &amp; Winsorization (Hampel X84 method)</div>
+            <div class="code-block"><pre><span class="kw">CREATE VIEW</span> cleaned_data <span class="kw">AS</span>
+<span class="kw">SELECT</span>
+    time, id, value, median, mad, is_outlier,
+    <span class="kw">CASE</span>
+        <span class="kw">WHEN</span> mad = 0 <span class="kw">THEN</span> value
+        <span class="kw">WHEN NOT</span> is_outlier <span class="kw">THEN</span> value
+        <span class="kw">WHEN</span> value > median
+            <span class="kw">THEN</span> median + 3 * 1.4826 * mad
+        <span class="kw">ELSE</span>
+            median - 3 * 1.4826 * mad
+    <span class="kw">END AS</span> clean_value
+<span class="kw">FROM</span> labeled_data;</pre></div>
+
+            <div class="output-table-wrap">
+              <table class="output-table">
+                <thead>
+                  <tr><th>id</th><th>value</th><th>median</th><th>mad</th><th>is_outlier</th><th>clean_value</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>a481d4a8&hellip;</td><td>812.6</td><td>727.5</td><td>16.2</td><td class="output-flag-true">true</td><td>799.55</td></tr>
+                  <tr><td>a51d3bed&hellip;</td><td>75.0</td><td>6.19</td><td>4.96</td><td class="output-flag-true">true</td><td>28.23</td></tr>
+                  <tr><td>a71fbdfd&hellip;</td><td>122.9</td><td>58.7</td><td>35.7</td><td class="output-flag-false">false</td><td>122.90</td></tr>
+                  <tr><td>a744b292&hellip;</td><td>107.0</td><td>74.0</td><td>18.0</td><td class="output-flag-false">false</td><td>107.00</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="snippet-label">Ontology roll-up: counting sensors by category (recursive graph query)</div>
+            <div class="code-block"><pre><span class="kw">WITH</span> sensor_children <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> subject <span class="kw">AS</span> sensor_child
+    <span class="kw">FROM</span> ontology
+    <span class="kw">WHERE</span> object = <span class="fn">'Brick#Sensor'</span>
+        <span class="kw">AND</span> predicate = <span class="fn">'subClassOf'</span>
+)
+<span class="kw">SELECT</span> sc.sensor_child, <span class="kw">COUNT</span>(<span class="kw">DISTINCT</span> md.id) <span class="kw">AS</span> count
+<span class="kw">FROM</span> metadata <span class="kw">AS</span> md
+<span class="kw">INNER JOIN</span> mapping <span class="kw">AS</span> map <span class="kw">ON</span> md.class = map.rawname
+<span class="kw">INNER JOIN</span> transitive_subClassOf <span class="kw">AS</span> t <span class="kw">ON</span> map.brickclass = t.subject
+<span class="kw">INNER JOIN</span> sensor_children <span class="kw">AS</span> sc <span class="kw">ON</span> t.object = sc.sensor_child
+<span class="kw">GROUP BY</span> sc.sensor_child
+<span class="kw">ORDER BY</span> sc.sensor_child;</pre></div>
+
+          </div>
+        </div>
+      </div>
+
       <div class="project-card">
         <span class="project-tag">Predictive modeling</span>
         <h3>Attrition risk model</h3>

@@ -83,7 +83,7 @@ img {
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-family: var(--font-serif);
   font-weight: 600;
   font-size: 26px;
@@ -144,11 +144,15 @@ img {
 /* ============================
    Eyebrow label
    ============================ */
-.site-footer {
-  padding: 24px 0;
-  margin-top: 60px;
+.eyebrow {
+  display: inline-block;
+  background: var(--color-green-light);
+  color: var(--color-green);
   font-size: 13px;
-  color: var(--color-text-faint);
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 18px;
 }
 
 /* ============================

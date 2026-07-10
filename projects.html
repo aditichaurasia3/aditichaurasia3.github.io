@@ -97,7 +97,7 @@
       <div class="project-card expandable" style="grid-column: 1 / -1;">
         <span class="project-tag">Data cleaning &middot; SQL</span>
         <h3>UC Berkeley Building Sensor Data Cleaning</h3>
-        <p>Worked with a real building-sensor dataset from a decade long Berkeley research study. It was a messy real-world database with billions of readings, inconsistent metadata, and OCR errors in the source tables. Cleaned it up using entity resolution, outlier detection, missing-data imputation, and ontology roll-up queries using raw Postgres SQL, no Pandas required.</p>
+        <p>Worked with a real building-sensor dataset from a decade long Berkeley research study &mdash; a messy real-world database with billions of readings, inconsistent metadata, and OCR errors in the source tables. I used entity resolution to match records that referred to the same sensor but were labeled inconsistently, outlier detection to catch faulty sensor readings without deleting real (if extreme) values, and missing-data imputation to fill gaps without introducing bias. I also wrote ontology roll-up queries to group thousands of sensors into meaningful categories, since the raw metadata was too messy to analyze directly. All done in raw Postgres SQL, no Pandas required.</p>
         <div class="project-stack">PostgreSQL &middot; CTEs &middot; Window Functions &middot; Recursive Queries</div>
 
         <button class="project-toggle" data-target="detail-data101" style="margin-top: 14px;">
@@ -157,7 +157,7 @@
       <div class="project-card expandable" style="grid-column: 1 / -1;">
         <span class="project-tag">Deep learning &middot; PyTorch</span>
         <h3>Transformer Encoder/Decoder from Scratch</h3>
-        <p>Implemented the core building blocks of the Transformer architecture in PyTorch, then trained it to perform English&rarr;German machine translation on the Multi30K dataset. Developed scaled dot-product attention, multi-head attention, positional embeddings, and full encoder/decoder blocks without pre-built transformer libraries.</p>
+        <p>Built the Transformer architecture from scratch in PyTorch, then trained it to translate English to German on the Multi30K dataset. I implemented scaled dot-product attention so the model could learn which words in a sentence matter most to each other, regardless of distance between them. I extended this into multi-head attention, letting the model track several different types of relationships between words at once (like grammar versus meaning). Since attention has no built-in sense of word order, I added positional embeddings so the model could tell "dog bites man" from "man bites dog." Finally, I connected everything into full encoder and decoder blocks, without relying on any pre-built transformer libraries.</p>
         <div class="project-stack">PyTorch &middot; Transformers &middot; NLP &middot; SentencePiece Tokenization</div>
 
         <button class="project-toggle" data-target="detail-transformer" style="margin-top: 14px;">
@@ -206,7 +206,7 @@
       <div class="project-card expandable" style="grid-column: 1 / -1;">
         <span class="project-tag">Deep learning &middot; Computer Vision</span>
         <h3>Vision Transformer &amp; Masked Autoencoder</h3>
-        <p>Implemented a Vision Transformer (ViT) and a Masked Autoencoder (MAE) from scratch in PyTorch, then compared three training strategies on CIFAR-10 image classification: supervised ViT from scratch, MAE self-supervised pretraining + linear probing, and full finetuning. The self-supervised MAE model learns to reconstruct images from as little as 25% of the original pixels.</p>
+        <p>Implemented a Vision Transformer (ViT) and a Masked Autoencoder (MAE) from scratch in PyTorch, then compared three training strategies on CIFAR-10 image classification: supervised ViT from scratch, MAE self-supervised pretraining + linear probing, and full finetuning. I wanted to test how well a model could learn to understand images without needing labeled data for every single one &mdash; a big deal in the real world, where labeled data is expensive and limited. The self-supervised MAE model learns to reconstruct images from as little as 25% of the original pixels, forcing it to learn the underlying structure of an image rather than memorizing surface details.</p>
         <div class="project-stack">PyTorch &middot; Vision Transformers &middot; Self-Supervised Learning &middot; einops</div>
 
         <button class="project-toggle" data-target="detail-vitmae" style="margin-top: 14px;">
@@ -265,7 +265,7 @@
       <div class="project-card expandable" style="grid-column: 1 / -1;">
         <span class="project-tag">Regression &middot; Algorithmic Fairness</span>
         <h3>Auditing a Housing Assessment Model for Bias</h3>
-        <p>Built a linear regression model to predict home sale prices for Cook County, Illinois (home of Chicago) &mdash; the same kind of model the Cook County Assessor's Office uses to set property tax assessments. In 2017, the CCAO was sued for producing racially discriminatory assessments that systematically overvalued inexpensive homes and undervalued expensive ones (a pattern known as regressive taxation). After building the model, I audited its errors across price brackets to check whether it reproduced that same regressive pattern &mdash; it did.</p>
+        <p>Built a linear regression model to predict home sale prices for Cook County, Illinois (home of Chicago) &mdash; the same kind of model the Cook County Assessor's Office uses to set property tax assessments. In 2017, the CCAO was sued for producing racially discriminatory assessments that systematically overvalued inexpensive homes and undervalued expensive ones (a pattern known as regressive taxation) &mdash; in effect, lower-income homeowners ended up paying unfairly high taxes relative to their home's actual value, while wealthier homeowners got away with paying comparatively less. I wanted to see whether an independently built model would fall into the same trap, so after building mine, I compared its errors across price brackets to check whether it reproduced that same regressive pattern &mdash; it did.</p>
         <div class="project-stack">Python &middot; pandas &middot; scikit-learn &middot; Linear Regression &middot; Feature Engineering</div>
 
         <button class="project-toggle" data-target="detail-cookcounty" style="margin-top: 14px;">

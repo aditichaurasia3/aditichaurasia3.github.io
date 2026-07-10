@@ -24,20 +24,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var trips = [
     { name: 'San Francisco', lat: 37.7749, lng: -122.4194, note: 'Home, repping the Bay Area wherever I go', icon: heartIcon },
-    { name: 'Dublin, Ireland', lat: 53.3498, lng: -6.2603, note: 'My second home, studied abroad there and returning for my masters' },
+    { name: 'Dublin', lat: 53.3498, lng: -6.2603, note: 'My second home, studied abroad there and returning for my masters' },
     { name: 'San Diego', lat: 32.7157, lng: -117.1611 },
     { name: 'Los Angeles', lat: 34.0522, lng: -118.2437 },
     { name: 'Boston', lat: 42.3601, lng: -71.0589, note: "Spent a transformative summer here, can't say the same about the winters" },
     { name: 'New York City', lat: 40.7128, lng: -74.0060, note: "I've taken many trips here over the years, but I'd love to spend some time living here too!" },
     { name: 'Atlanta', lat: 33.7490, lng: -84.3880, note: 'First trip I took without family at 18, so it holds a special place' },
     { name: 'Minneapolis-Saint Paul', lat: 44.9778, lng: -93.2650 },
-    { name: 'Thief River Falls, MN', lat: 48.1183, lng: -96.1814, note: 'My first taste of small-town Midwest' },
+    { name: 'Thief River Falls', lat: 48.1183, lng: -96.1814, note: 'My first taste of small-town Midwest' },
     { name: 'Honolulu', lat: 21.3069, lng: -157.8583, note: 'Favorite family trip' },
     { name: 'Cabo San Lucas', lat: 22.8905, lng: -109.9167, note: 'Senior year spring break (obviously)' },
-    { name: 'La Paz, Mexico', lat: 24.1426, lng: -110.3128, note: 'Snorkeled with whale sharks!' },
+    { name: 'La Paz', lat: 24.1426, lng: -110.3128, note: 'Snorkeled with whale sharks!' },
     { name: 'Cancun', lat: 21.1619, lng: -86.8515 },
     { name: 'Ensenada', lat: 31.8667, lng: -116.6000 },
-    { name: 'Rovaniemi, Finland', lat: 66.5039, lng: 25.7294, note: 'Saw the northern lights for the first time in thigh-high snow, absolutely magical' },
+    { name: 'Rovaniemi', lat: 66.5039, lng: 25.7294, note: 'Saw the northern lights for the first time in thigh-high snow, absolutely magical' },
     { name: 'Paris', lat: 48.8566, lng: 2.3522, note: 'Five years of high school French did not come in handy' },
     { name: 'Barcelona', lat: 41.3851, lng: 2.1734, note: 'Absolutely gorgeous, hoping to go back soon' },
     { name: 'Madrid', lat: 40.4168, lng: -3.7038 },
@@ -54,12 +54,16 @@ document.addEventListener('DOMContentLoaded', function () {
     { name: 'Philadelphia', lat: 39.9526, lng: -75.1652 },
     { name: 'Washington, D.C.', lat: 38.9072, lng: -77.0369 },
     { name: 'Baltimore', lat: 39.2904, lng: -76.6122 },
-    { name: 'Thousand Islands, Canada', lat: 44.3300, lng: -76.0000, note: 'A trip I took with my mom, and it was her favorite place' },
-    { name: 'Mumbai', lat: 19.0760, lng: 72.8777, note: "Where my parents call home, so it's always a good time" },
+    { name: 'Thousand Islands', lat: 44.3300, lng: -76.0000, note: 'A trip I took with my mom, and it was her favorite place' },
+    { name: 'Mumbai', lat: 19.0760, lng: 72.8777, note: "Where my parents grew up, so it's always a good time" },
     { name: 'Delhi', lat: 28.7041, lng: 77.1025 },
-    { name: 'Mussoorie, India', lat: 30.4598, lng: 78.0664, note: 'Himalayan hill station' },
+    { name: 'Mussoorie', lat: 30.4598, lng: 78.0664, note: 'Himalayan hill station' },
     { name: 'Hong Kong', lat: 22.3193, lng: 114.1694 },
     { name: 'Dubai', lat: 25.2048, lng: 55.2708 }
+    { name: 'Las Vegas', lat: 36.1699, lng: -115.1398 },
+    { name: 'Phoenix', lat: 33.4484, lng: -112.0740 },
+    { name: 'Page', lat: 36.9147, lng: -111.4558 },
+    { name: 'Bryce Canyon', lat: 37.5930, lng: -112.1871 }
   ];
 
   trips.forEach(function (trip) {

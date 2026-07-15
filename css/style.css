@@ -90,7 +90,7 @@ img {
   font-family: var(--font-bold); font-weight: 700;
   font-size: 18px;
   letter-spacing: -0.01em;
-  color: var(--color-ink);
+  color: var(--color-green);
 }
 
 .nav-links {

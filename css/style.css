@@ -13,7 +13,7 @@
   --color-ink: #161611;
   --color-text: #2A2A26;
    --color-text-muted: #4a4a44;
-   --color-text-faint: #9a9a90;
+--color-text-faint: #7a7a70;
   --font-bold: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-light: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --max-width: 1000px;
@@ -28,7 +28,7 @@
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-light); font-weight: 300;
+  font-family: var(--font-light); font-weight: 400;
   line-height: 1.6;
 }
 

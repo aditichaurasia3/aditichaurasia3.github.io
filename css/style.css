@@ -55,13 +55,6 @@ img {
   padding: 0 28px;
 }
 
-.highlight-card {
-  background: var(--color-green-light);
-  border: 1.5px solid var(--color-green);
-  border-radius: 14px;
-  padding: 22px;
-}
-
 /* ============================
    Editorial minimal — core
    ============================ */

@@ -2,20 +2,20 @@
    Variables & Reset
    ============================ */
 :root {
-  --color-bg: #FAF8F3;
+  --color-bg: #FFFFFF;
   --color-card: #FFFFFF;
   --color-border: #ECE8DD;
-  --color-rule: #D9D4C6;
+  --color-rule: #E0E0E0;
   --color-green: #0F4C3A;
   --color-green-light: #E9F2EC;
   --color-green-mid: #3D7A5E;
   --color-green-dark: #123524;
   --color-ink: #161611;
-  --color-text: #123524;
+  --color-text: #2A2A26;
   --color-text-muted: #6b6b62;
   --color-text-faint: #9a9a90;
-  --font-serif: 'Lora', serif;
-  --font-sans: 'Mulish', sans-serif;
+  --font-bold: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-light: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --max-width: 1000px;
 }
 
@@ -28,7 +28,7 @@
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-sans);
+  font-family: var(--font-light); font-weight: 300;
   line-height: 1.6;
 }
 
@@ -59,9 +59,8 @@ img {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-sans);
+  font-family: var(--font-bold); font-weight: 700;
   font-size: 11px;
-  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-text-faint);
@@ -88,8 +87,7 @@ img {
 }
 
 .logo {
-  font-family: var(--font-serif);
-  font-weight: 600;
+  font-family: var(--font-bold); font-weight: 700;
   font-size: 18px;
   letter-spacing: -0.01em;
   color: var(--color-ink);
@@ -128,12 +126,11 @@ img {
 }
 
 .hero-main h1 {
-  font-family: var(--font-serif);
-  font-weight: 600;
+  font-family: var(--font-bold); font-weight: 700;
   font-size: 50px;
   line-height: 1.14;
   letter-spacing: -0.015em;
-  color: var(--color-ink);
+  color: var(--color-green);
   margin-bottom: 22px;
 }
 
@@ -160,7 +157,7 @@ img {
 }
 
 .hero-note-label {
-  font-family: var(--font-sans);
+  font-family: var(--font-light); font-weight: 300;
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -170,7 +167,7 @@ img {
 }
 
 .hero-note-value {
-  font-family: var(--font-serif);
+  font-family: var(--font-bold); font-weight: 700;
   font-size: 15px;
   color: var(--color-ink);
   line-height: 1.4;
@@ -181,7 +178,7 @@ img {
    ============================ */
 .btn {
   display: inline-block;
-  font-family: var(--font-sans);
+  font-family: var(--font-light); font-weight: 300;
   font-weight: 600;
   font-size: 13px;
   padding: 11px 24px;
@@ -200,7 +197,7 @@ img {
 }
 
 .btn-link {
-  font-family: var(--font-sans);
+  font-family: var(--font-light); font-weight: 300;
   font-weight: 600;
   font-size: 13px;
   color: var(--color-green);
@@ -233,8 +230,7 @@ img {
 }
 
 .highlight-card h3 {
-  font-family: var(--font-serif);
-  font-weight: 600;
+  font-family: var(--font-bold); font-weight: 700;
   font-size: 17px;
   color: var(--color-ink);
   margin-bottom: 8px;
@@ -280,7 +276,7 @@ img {
 .project-toggle {
   background: none;
   border: none;
-  font-family: var(--font-sans);
+  font-family: var(--font-light); font-weight: 300;
   font-weight: 600;
   font-size: 12.5px;
   color: var(--color-green);

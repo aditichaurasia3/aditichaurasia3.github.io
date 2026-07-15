@@ -11,9 +11,9 @@
   --color-green-mid: #3D7A5E;
   --color-green-dark: #123524;
   --color-ink: #161611;
-  --color-text: #2A2A26;
-   --color-text-muted: #4a4a44;
---color-text-faint: #7a7a70;
+  --color-text: #000000;
+--color-text-muted: #000000;
+--color-text-faint: #000000;
   --font-bold: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-light: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --max-width: 1000px;
@@ -28,7 +28,7 @@
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-light); font-weight: 400;
+  font-family: var(--font-light); font-weight: 350;
   line-height: 1.6;
 }
 

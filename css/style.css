@@ -328,7 +328,7 @@ img {
 }
 
 .code-block {
-  background: var(--color-green-dark);
+  background: #0B2A1D;
   border-radius: 10px;
   padding: 16px 18px;
   overflow-x: auto;

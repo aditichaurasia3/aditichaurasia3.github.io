@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { name: 'Delhi', lat: 28.7041, lng: 77.1025 },
     { name: 'Mussoorie', lat: 30.4598, lng: 78.0664, note: 'Himalayan hill station' },
     { name: 'Hong Kong', lat: 22.3193, lng: 114.1694 },
-    { name: 'Dubai', lat: 25.2048, lng: 55.2708 }
+    { name: 'Dubai', lat: 25.2048, lng: 55.2708 },
     { name: 'Las Vegas', lat: 36.1699, lng: -115.1398 },
     { name: 'Phoenix', lat: 33.4484, lng: -112.0740 },
     { name: 'Page', lat: 36.9147, lng: -111.4558 },

@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Mulish:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     .page-header {
       padding: 50px 0 30px;
@@ -72,13 +71,7 @@
 
   <div class="wrap">
     <nav class="site-nav">
-      <a href="index.html" class="logo">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-          <path d="M5 6H19C20.1 6 21 6.9 21 8V9C19.9 9 19 9.9 19 11C19 12.1 19.9 13 21 13V14C21 15.1 20.1 16 19 16H5C3.9 16 3 15.1 3 14V8C3 6.9 3.9 6 5 6Z" stroke="#3D7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M13 6V16" stroke="#3D7A5E" stroke-width="1.8" stroke-dasharray="1.5 1.5" stroke-linecap="round"/>
-        </svg>
-        Aditi Chaurasia
-      </a>
+      <a href="index.html" class="logo">Aditi Chaurasia</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="resume.html">Resume</a>
@@ -88,7 +81,7 @@
     </nav>
 
     <header class="page-header">
-      <div class="eyebrow">✨ Projects</div>
+      <div class="eyebrow">Projects</div>
       <h1>Things I've built</h1>
     </header>
 
@@ -278,89 +271,4 @@
             <div class="snippet-label">Feature engineering: extracting bedroom counts from free-text descriptions</div>
             <div class="code-block"><pre><span class="kw">def</span> add_total_bedrooms(data):
     <span class="cm"># "Bedrooms" isn't a column -- it's buried in a free-text</span>
-    <span class="cm"># "Description" field, so we pull it out with a regex.</span>
-    with_rooms = data.copy()
-    with_rooms[<span class="fn">'Bedrooms'</span>] = with_rooms[<span class="fn">'Description'</span>].str.extract(
-        <span class="fn">r'(\d+) of which are bedroom'</span>
-    )
-    with_rooms[<span class="fn">'Bedrooms'</span>] = with_rooms[<span class="fn">'Bedrooms'</span>].fillna(<span class="fn">0</span>).astype(<span class="kw">int</span>)
-    <span class="kw">return</span> with_rooms</pre></div>
-
-            <div class="snippet-label">Auditing the model: RMSE and overestimation rate by price bracket</div>
-            <div class="code-block"><pre><span class="kw">def</span> rmse_interval(df, start, end):
-    <span class="cm"># RMSE for homes whose true log sale price falls in [start, end]</span>
-    subset = df[(df[<span class="fn">'True Log Sale Price'</span>] >= start) & (df[<span class="fn">'True Log Sale Price'</span>] <= end)]
-    <span class="kw">return</span> np.sqrt(np.mean((subset[<span class="fn">'Predicted Log Sale Price'</span>] - subset[<span class="fn">'True Log Sale Price'</span>]) ** <span class="fn">2</span>))
-
-<span class="kw">def</span> prop_overest_interval(df, start, end):
-    <span class="cm"># What fraction of homes in this bracket did the model overvalue?</span>
-    subset = df[(df[<span class="fn">'True Log Sale Price'</span>] >= start) & (df[<span class="fn">'True Log Sale Price'</span>] <= end)]
-    <span class="kw">return</span> np.mean(subset[<span class="fn">'Predicted Log Sale Price'</span>] > subset[<span class="fn">'True Log Sale Price'</span>])</pre></div>
-
-            <div class="snippet-label">Results: does the model reproduce regressive taxation?</div>
-            <div class="output-table-wrap">
-              <table class="output-table">
-                <thead>
-                  <tr><th>Price bracket</th><th>Homes overestimated</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Cheaper half of homes</td><td class="output-flag-true">63.9%</td></tr>
-                  <tr><td>More expensive half of homes</td><td>29.99%</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p style="font-size: 12.5px; color: var(--color-text-muted); margin-top: 10px;">Training RMSE: 53,722 (on Sale Price, delogged). Cheaper homes were overvalued more than twice as often as expensive homes &mdash; the same regressive pattern at the center of the real CCAO lawsuit.</p>
-
-            <div class="snippet-label">RMSE and overestimation rate across price brackets</div>
-            <img src="img/rmse-overestimation-chart.png" alt="Two bar charts: RMSE by log sale price interval, and percentage of house values overestimated by log sale price interval, both showing higher error and overestimation rates for cheaper homes" style="border-radius: 10px; border: 1px solid var(--color-border); margin-top: 4px;">
-
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card expandable" style="grid-column: 1 / -1;">
-        <span class="project-tag">Research &middot; Algorithmic Ethics</span>
-        <h3>Political &amp; Eugenic Implications of Dating App Algorithms</h3>
-        <p>A research paper examining how automated decision-making (ADM) and preemptive computing on dating apps shape who becomes visible, desirable, and matchable &mdash; and how these systems can reproduce discriminatory and soft-eugenic patterns under the guise of "scientific" compatibility matching. Argues that dating platforms convert political control over romantic visibility into eugenic-adjacent sorting by race, class, and appearance, while their business model actively rewards prolonged searching over successful matches.</p>
-        <div class="project-stack">Critical Analysis &middot; Algorithmic Bias &middot; Sociotechnical Systems</div>
-
-        <button class="project-toggle" data-target="detail-datingapp" style="margin-top: 14px;">
-          <span class="chevron">&#9656;</span> <span class="btn-label">Read more</span>
-        </button>
-
-        <div class="project-detail" id="detail-datingapp">
-          <div class="project-detail-inner">
-
-            <div class="snippet-label">Core argument</div>
-            <p style="font-size: 13px; color: var(--color-text); margin-bottom: 16px;">
-              Preemptive computing and ADM govern visibility and desirability on dating apps &mdash; producing <strong>political</strong> implications by structuring who gets access to potential partners, and <strong>eugenic</strong> implications by reinforcing similarity-based ideals about who "should" match.
-            </p>
-
-            <div class="snippet-label">Key points</div>
-            <ul style="font-size: 13px; color: var(--color-text); padding-left: 20px; line-height: 1.8; margin-bottom: 4px;">
-              <li>Dating app algorithms function as black-box "rulemaking" &mdash; users can't see or contest who is shown to them, shifting agency from the user to the platform.</li>
-              <li>Bias enters through training data, proxy filters (neighborhood, job title), and ranking systems that promote dominant norms &mdash; then compounds through collaborative filtering, which learns majority swiping behavior and suppresses minority profiles.</li>
-              <li>Some platforms (e.g. eHarmony) frame compatibility in explicitly biological/genetic terms, echoing historical eugenic logic around "fitness" for reproduction.</li>
-              <li>Platform business models profit from prolonged searching, not successful matches &mdash; creating a structural conflict between user goals and platform incentives.</li>
-            </ul>
-
-            <a href="papers/dating-app-algorithms.pdf" target="_blank" class="btn btn-outline" style="margin-top: 16px; display: inline-block;">Read full paper (PDF)</a>
-
-          </div>
-        </div>
-      </div>
-
-     
-
-    </section>
-  </div>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      &copy; Made from scratch with me and Claude 🦧
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
-</html>
+    <span class="cm"># "Description"

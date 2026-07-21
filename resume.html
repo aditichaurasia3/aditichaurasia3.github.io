@@ -96,7 +96,7 @@
       transition: max-height 0.25s ease;
     }
     .exp-card.open .exp-card-details {
-      max-height: 400px;
+      max-height: 1200px;
     }
     .exp-card-details-inner {
       padding-top: 14px;
@@ -115,6 +115,22 @@
       content: "— ";
       color: var(--color-green-mid);
     }
+    .exp-narrative-label {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 12.5px;
+      color: var(--color-green-mid);
+      margin-bottom: 4px;
+      margin-top: 16px;
+    }
+    .exp-narrative-label:first-child {
+      margin-top: 0;
+    }
+    .exp-narrative-text {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
   </style>
 </head>
 <body>
@@ -131,4 +147,123 @@
     </nav>
 
     <header class="page-header">
-      <div
+      <div class="kicker">Resume</div>
+      <h1>Experience &amp; involvement</h1>
+      <p>Click any card to see the details. Replace this placeholder content with your actual roles whenever you're ready.</p>
+    </header>
+
+    <section class="resume-section">
+      <h2>Experience</h2>
+      <div class="card-list">
+
+        <div class="exp-card">
+          <div class="exp-card-top">
+            <div>
+              <div class="exp-card-title">Residential Advisor &amp; Mentor — GLOBE</div>
+              <div class="exp-card-sub">Dado and Maria Banatao Center for Global Learning and Outreach, Berkeley Engineering</div>
+              <div class="exp-card-meta">June 2026 — August 2026</div>
+            </div>
+            <div class="exp-toggle">+</div>
+          </div>
+          <div class="exp-card-details">
+            <div class="exp-card-details-inner">
+
+              <div class="exp-narrative-label">What GLOBE is</div>
+              <div class="exp-narrative-text">GLOBE (Dado and Maria Banatao Center for Global Learning and Outreach, Berkeley Engineering) brings pre-college students to campus for a summer of hands-on engineering — building 3D-printed robots and training ML models — a lot of them away from home for the first time.</div>
+
+              <div class="exp-narrative-label">Why it needed me</div>
+              <div class="exp-narrative-text">30 students aged 15–17, a technically demanding curriculum, and zero built-in structure for the human side of things. Someone had to actually run the summer, not just the syllabus.</div>
+
+              <div class="exp-narrative-label">What that looked like day to day</div>
+              <div class="exp-narrative-text">I managed the academic and extracurricular schedule for the whole cohort, planned field trips, and ran interview-prep workshops so students walked away with more than just robotics skills. A lot of the job was translating between "here's the technical curriculum" and 30 kids with wildly different comfort levels with code and hardware — figuring out in real time who needed more structure and who needed more room.</div>
+
+              <div class="exp-narrative-label">The impact</div>
+              <div class="exp-narrative-text">A full cohort that made it through an intense technical summer intact, plus some professional-development exposure most of them wouldn't have gotten otherwise.</div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-card-top">
+            <div>
+              <div class="exp-card-title">People Analytics Associate — Example Corp</div>
+              <div class="exp-card-sub">Building attrition models and engagement dashboards</div>
+              <div class="exp-card-meta">2023 — Present</div>
+            </div>
+            <div class="exp-toggle">+</div>
+          </div>
+          <div class="exp-card-details">
+            <div class="exp-card-details-inner">
+              <ul>
+                <li>Built a logistic regression attrition model flagging flight risk 60 days early, used across 3 business units</li>
+                <li>Designed and ran the quarterly engagement survey for 1,200+ employees</li>
+                <li>Partnered with HRBPs to translate survey findings into manager action plans</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-card-top">
+            <div>
+              <div class="exp-card-title">Research Assistant — University Lab</div>
+              <div class="exp-card-sub">Organizational behavior research</div>
+              <div class="exp-card-meta">2021 — 2023</div>
+            </div>
+            <div class="exp-toggle">+</div>
+          </div>
+          <div class="exp-card-details">
+            <div class="exp-card-details-inner">
+              <ul>
+                <li>Co-authored a survey methodology paper on response bias in workplace engagement surveys</li>
+                <li>Cleaned and analyzed a 5-year longitudinal dataset of 4,000 respondents</li>
+                <li>Presented findings at two academic conferences</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <h2>Involvement</h2>
+      <div class="card-list">
+
+        <div class="exp-card">
+          <div class="exp-card-top">
+            <div>
+              <div class="exp-card-title">Mentor — Women in Data</div>
+              <div class="exp-card-sub">Mentoring early-career analysts</div>
+              <div class="exp-card-meta">2022 — Present</div>
+            </div>
+            <div class="exp-toggle">+</div>
+          </div>
+          <div class="exp-card-details">
+            <div class="exp-card-details-inner">
+              <ul>
+                <li>Mentor 2-3 early-career analysts per cohort on technical and career growth</li>
+                <li>Lead a quarterly workshop on translating data into stakeholder-ready stories</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      &copy; Made from scratch with me and Claude
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.exp-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        card.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>

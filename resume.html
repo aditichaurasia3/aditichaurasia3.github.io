@@ -131,11 +131,26 @@
       color: var(--color-text-muted);
       line-height: 1.7;
     }
+    .exp-detail-layout {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 26px;
+      align-items: start;
+    }
     .exp-org-logo {
-      height: 26px;
-      width: auto;
-      margin-bottom: 14px;
+      width: 100%;
+      height: auto;
+      max-width: 96px;
       display: block;
+    }
+    @media (max-width: 600px) {
+      .exp-detail-layout {
+        grid-template-columns: 1fr;
+      }
+      .exp-org-logo {
+        max-width: 64px;
+        margin-bottom: 4px;
+      }
     }
   </style>
 </head>
@@ -173,21 +188,25 @@
           </div>
           <div class="exp-card-details">
             <div class="exp-card-details-inner">
+              <div class="exp-detail-layout">
 
-              <img src="img/logos/berkeley.png" alt="UC Berkeley logo" class="exp-org-logo">
+                <img src="img/logos/berkeley.png" alt="UC Berkeley logo" class="exp-org-logo">
 
-              <div class="exp-narrative-label">What GLOBE is</div>
-              <div class="exp-narrative-text">GLOBE (Dado and Maria Banatao Center for Global Learning and Outreach, Berkeley Engineering) brings pre-college students to campus for a summer of hands-on engineering — building 3D-printed robots and training ML models — a lot of them away from home for the first time.</div>
+                <div>
+                  <div class="exp-narrative-label">What GLOBE is</div>
+                  <div class="exp-narrative-text">GLOBE (Dado and Maria Banatao Center for Global Learning and Outreach, Berkeley Engineering) brings pre-college students to campus for a summer of hands-on engineering — building 3D-printed robots and training ML models — a lot of them away from home for the first time.</div>
 
-              <div class="exp-narrative-label">Why it needed me</div>
-              <div class="exp-narrative-text">30 students aged 15–17, a technically demanding curriculum, and zero built-in structure for the human side of things. Someone had to actually run the summer, not just the syllabus.</div>
+                  <div class="exp-narrative-label">Why it needed me</div>
+                  <div class="exp-narrative-text">30 students aged 15–17, a technically demanding curriculum, and zero built-in structure for the human side of things. Someone had to actually run the summer, not just the syllabus.</div>
 
-              <div class="exp-narrative-label">What that looked like day to day</div>
-              <div class="exp-narrative-text">I managed the academic and extracurricular schedule for the whole cohort, planned field trips, and ran interview-prep workshops so students walked away with more than just robotics skills. A lot of the job was translating between "here's the technical curriculum" and 30 kids with wildly different comfort levels with code and hardware — figuring out in real time who needed more structure and who needed more room.</div>
+                  <div class="exp-narrative-label">What that looked like day to day</div>
+                  <div class="exp-narrative-text">I managed the academic and extracurricular schedule for the whole cohort, planned field trips, and ran interview-prep workshops so students walked away with more than just robotics skills. A lot of the job was translating between "here's the technical curriculum" and 30 kids with wildly different comfort levels with code and hardware — figuring out in real time who needed more structure and who needed more room.</div>
 
-              <div class="exp-narrative-label">The impact</div>
-              <div class="exp-narrative-text">A full cohort that made it through an intense technical summer intact, plus some professional-development exposure most of them wouldn't have gotten otherwise.</div>
+                  <div class="exp-narrative-label">The impact</div>
+                  <div class="exp-narrative-text">A full cohort that made it through an intense technical summer intact, plus some professional-development exposure most of them wouldn't have gotten otherwise.</div>
+                </div>
 
+              </div>
             </div>
           </div>
         </div>
@@ -203,21 +222,25 @@
           </div>
           <div class="exp-card-details">
             <div class="exp-card-details-inner">
+              <div class="exp-detail-layout">
 
-              <img src="img/logos/bbh.png" alt="Brown Brothers Harriman logo" class="exp-org-logo">
+                <img src="img/logos/bbh.png" alt="Brown Brothers Harriman logo" class="exp-org-logo">
 
-              <div class="exp-narrative-label">What BBH is</div>
-              <div class="exp-narrative-text">Brown Brothers Harriman is one of the oldest private banks in the US. I spent the summer on their Financial Services side, working with a developer-facing toolkit and the Capital Partners team, who handle the operational side of managing client accounts and vendor transactions.</div>
+                <div>
+                  <div class="exp-narrative-label">What BBH is</div>
+                  <div class="exp-narrative-text">Brown Brothers Harriman is one of the oldest private banks in the US. I spent the summer on their Financial Services side, working with a developer-facing toolkit and the Capital Partners team, who handle the operational side of managing client accounts and vendor transactions.</div>
 
-              <div class="exp-narrative-label">Why it needed me</div>
-              <div class="exp-narrative-text">A 60+ resource developer toolkit used by 300+ developers had no good way to search or surface documentation, so people were constantly re-asking questions that were technically already answered somewhere in there. Separately, Capital Partners was tracking sleeve reporting across 54 accounts with no shared system, and had no real visibility into the $8M+ in daily vendor transactions and invoices flowing through their operations.</div>
+                  <div class="exp-narrative-label">Why it needed me</div>
+                  <div class="exp-narrative-text">A 60+ resource developer toolkit used by 300+ developers had no good way to search or surface documentation, so people were constantly re-asking questions that were technically already answered somewhere in there. Separately, Capital Partners was tracking sleeve reporting across 54 accounts with no shared system, and had no real visibility into the $8M+ in daily vendor transactions and invoices flowing through their operations.</div>
 
-              <div class="exp-narrative-label">What that looked like day to day</div>
-              <div class="exp-narrative-text">I integrated Azure OpenAI APIs into the developer toolkit to add natural language search, so people could actually find documentation instead of guessing keywords or asking around — I presented the solution bank-wide, and it's currently pending deployment. On the Capital Partners side, I built out a Confluence page to standardize sleeve reporting across all 54 accounts, and separately built Excel and Power BI dashboards to make sense of the $8M+ in daily transactions and invoices.</div>
+                  <div class="exp-narrative-label">What that looked like day to day</div>
+                  <div class="exp-narrative-text">I integrated Azure OpenAI APIs into the developer toolkit to add natural language search, so people could actually find documentation instead of guessing keywords or asking around — I presented the solution bank-wide, and it's currently pending deployment. On the Capital Partners side, I built out a Confluence page to standardize sleeve reporting across all 54 accounts, and separately built Excel and Power BI dashboards to make sense of the $8M+ in daily transactions and invoices.</div>
 
-              <div class="exp-narrative-label">The impact</div>
-              <div class="exp-narrative-text">The Confluence reporting page hit 100% adoption across Capital Partners, and the dashboards gave the team visibility into vendor spend they didn't have before. The AI search tool made it through a bank-wide presentation and is in line to actually ship.</div>
+                  <div class="exp-narrative-label">The impact</div>
+                  <div class="exp-narrative-text">The Confluence reporting page hit 100% adoption across Capital Partners, and the dashboards gave the team visibility into vendor spend they didn't have before. The AI search tool made it through a bank-wide presentation and is in line to actually ship.</div>
+                </div>
 
+              </div>
             </div>
           </div>
         </div>

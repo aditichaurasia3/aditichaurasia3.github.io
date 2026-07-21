@@ -36,16 +36,6 @@
       border-radius: 16px;
       padding: 24px;
     }
-    .project-tag {
-      display: inline-block;
-      background: var(--color-green-light);
-      color: var(--color-green);
-      font-size: 11px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 10px;
-      margin-bottom: 12px;
-    }
     .project-card h3 {
       font-family: var(--font-serif);
       font-weight: 600;
@@ -59,8 +49,13 @@
       margin-bottom: 14px;
     }
     .project-stack {
+      display: inline-block;
+      background: var(--color-green-light);
+      color: var(--color-green);
       font-size: 12px;
-      color: var(--color-text-faint);
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 10px;
     }
     @media (max-width: 700px) {
       .project-grid { grid-template-columns: 1fr; }
@@ -81,21 +76,22 @@
     </nav>
 
     <header class="page-header">
-      <div class="eyebrow">Projects</div>
+      <div class="kicker">Projects</div>
       <h1>Things I've built</h1>
     </header>
 
     <section class="project-grid">
 
       <div class="project-card expandable" style="grid-column: 1 / -1;">
-        <span class="project-tag">Data cleaning &middot; SQL</span>
         <h3>UC Berkeley Building Sensor Data Cleaning</h3>
         <p>Worked with a real building-sensor dataset from a decade long Berkeley research study &mdash; a messy real-world database with billions of readings, inconsistent metadata, and OCR errors in the source tables. I used entity resolution to match records that referred to the same sensor but were labeled inconsistently, outlier detection to catch faulty sensor readings without deleting real (if extreme) values, and missing-data imputation to fill gaps without introducing bias. I also wrote ontology roll-up queries to group thousands of sensors into meaningful categories, since the raw metadata was too messy to analyze directly. All done in raw Postgres SQL, no Pandas required.</p>
         <div class="project-stack">PostgreSQL &middot; CTEs &middot; Window Functions &middot; Recursive Queries</div>
 
-        <button class="project-toggle" data-target="detail-data101" style="margin-top: 14px;">
-          <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
-        </button>
+        <div>
+          <button class="project-toggle" data-target="detail-data101" style="margin-top: 14px;">
+            <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
+          </button>
+        </div>
 
         <div class="project-detail" id="detail-data101">
           <div class="project-detail-inner">
@@ -148,14 +144,15 @@
       </div>
 
       <div class="project-card expandable" style="grid-column: 1 / -1;">
-        <span class="project-tag">Deep learning &middot; PyTorch</span>
         <h3>Transformer Encoder/Decoder from Scratch</h3>
         <p>Built the Transformer architecture from scratch in PyTorch, then trained it to translate English to German on the Multi30K dataset. I implemented scaled dot-product attention so the model could learn which words in a sentence matter most to each other, regardless of distance between them. I extended this into multi-head attention, letting the model track several different types of relationships between words at once (like grammar versus meaning). Since attention has no built-in sense of word order, I added positional embeddings so the model could tell "dog bites man" from "man bites dog." Finally, I connected everything into full encoder and decoder blocks, without relying on any pre-built transformer libraries.</p>
         <div class="project-stack">PyTorch &middot; Transformers &middot; NLP &middot; SentencePiece Tokenization</div>
 
-        <button class="project-toggle" data-target="detail-transformer" style="margin-top: 14px;">
-          <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
-        </button>
+        <div>
+          <button class="project-toggle" data-target="detail-transformer" style="margin-top: 14px;">
+            <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
+          </button>
+        </div>
 
         <div class="project-detail" id="detail-transformer">
           <div class="project-detail-inner">
@@ -197,14 +194,15 @@
       </div>
 
       <div class="project-card expandable" style="grid-column: 1 / -1;">
-        <span class="project-tag">Deep learning &middot; Computer Vision</span>
         <h3>Vision Transformer &amp; Masked Autoencoder</h3>
         <p>Implemented a Vision Transformer (ViT) and a Masked Autoencoder (MAE) from scratch in PyTorch, then compared three training strategies on CIFAR-10 image classification: supervised ViT from scratch, MAE self-supervised pretraining + linear probing, and full finetuning. I wanted to test how well a model could learn to understand images without needing labeled data for every single one &mdash; a big deal in the real world, where labeled data is expensive and limited. The self-supervised MAE model learns to reconstruct images from as little as 25% of the original pixels, forcing it to learn the underlying structure of an image rather than memorizing surface details.</p>
         <div class="project-stack">PyTorch &middot; Vision Transformers &middot; Self-Supervised Learning &middot; einops</div>
 
-        <button class="project-toggle" data-target="detail-vitmae" style="margin-top: 14px;">
-          <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
-        </button>
+        <div>
+          <button class="project-toggle" data-target="detail-vitmae" style="margin-top: 14px;">
+            <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
+          </button>
+        </div>
 
         <div class="project-detail" id="detail-vitmae">
           <div class="project-detail-inner">
@@ -254,16 +252,16 @@
         </div>
       </div>
 
-
       <div class="project-card expandable" style="grid-column: 1 / -1;">
-        <span class="project-tag">Regression &middot; Algorithmic Fairness</span>
         <h3>Auditing a Housing Assessment Model for Bias</h3>
         <p>Built a linear regression model to predict home sale prices for Cook County, Illinois (home of Chicago) &mdash; the same kind of model the Cook County Assessor's Office uses to set property tax assessments. In 2017, the CCAO was sued for producing racially discriminatory assessments that systematically overvalued inexpensive homes and undervalued expensive ones (a pattern known as regressive taxation) &mdash; in effect, lower-income homeowners ended up paying unfairly high taxes relative to their home's actual value, while wealthier homeowners got away with paying comparatively less. I wanted to see whether an independently built model would fall into the same trap, so after building mine, I compared its errors across price brackets to check whether it reproduced that same regressive pattern &mdash; it did.</p>
         <div class="project-stack">Python &middot; pandas &middot; scikit-learn &middot; Linear Regression &middot; Feature Engineering</div>
 
-        <button class="project-toggle" data-target="detail-cookcounty" style="margin-top: 14px;">
-          <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
-        </button>
+        <div>
+          <button class="project-toggle" data-target="detail-cookcounty" style="margin-top: 14px;">
+            <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
+          </button>
+        </div>
 
         <div class="project-detail" id="detail-cookcounty">
           <div class="project-detail-inner">
@@ -271,4 +269,99 @@
             <div class="snippet-label">Feature engineering: extracting bedroom counts from free-text descriptions</div>
             <div class="code-block"><pre><span class="kw">def</span> add_total_bedrooms(data):
     <span class="cm"># "Bedrooms" isn't a column -- it's buried in a free-text</span>
-    <span class="cm"># "Description"
+    <span class="cm"># "Description" field, so we pull it out with a regex.</span>
+    with_rooms = data.copy()
+    with_rooms[<span class="fn">'Bedrooms'</span>] = with_rooms[<span class="fn">'Description'</span>].str.extract(
+        <span class="fn">r'(\d+) of which are bedroom'</span>
+    )
+    with_rooms[<span class="fn">'Bedrooms'</span>] = with_rooms[<span class="fn">'Bedrooms'</span>].fillna(<span class="fn">0</span>).astype(<span class="kw">int</span>)
+    <span class="kw">return</span> with_rooms</pre></div>
+
+            <div class="snippet-label">Auditing the model: RMSE and overestimation rate by price bracket</div>
+            <div class="code-block"><pre><span class="kw">def</span> rmse_interval(df, start, end):
+    <span class="cm"># RMSE for homes whose true log sale price falls in [start, end]</span>
+    subset = df[(df[<span class="fn">'True Log Sale Price'</span>] >= start) & (df[<span class="fn">'True Log Sale Price'</span>] <= end)]
+    <span class="kw">return</span> np.sqrt(np.mean((subset[<span class="fn">'Predicted Log Sale Price'</span>] - subset[<span class="fn">'True Log Sale Price'</span>]) ** <span class="fn">2</span>))
+
+<span class="kw">def</span> prop_overest_interval(df, start, end):
+    <span class="cm"># What fraction of homes in this bracket did the model overvalue?</span>
+    subset = df[(df[<span class="fn">'True Log Sale Price'</span>] >= start) & (df[<span class="fn">'True Log Sale Price'</span>] <= end)]
+    <span class="kw">return</span> np.mean(subset[<span class="fn">'Predicted Log Sale Price'</span>] > subset[<span class="fn">'True Log Sale Price'</span>])</pre></div>
+
+            <div class="snippet-label">Results: does the model reproduce regressive taxation?</div>
+            <div class="output-table-wrap">
+              <table class="output-table">
+                <thead>
+                  <tr><th>Price bracket</th><th>Homes overestimated</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Cheaper half of homes</td><td class="output-flag-true">63.9%</td></tr>
+                  <tr><td>More expensive half of homes</td><td>29.99%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="font-size: 12.5px; color: var(--color-text-muted); margin-top: 10px;">Training RMSE: 53,722 (on Sale Price, delogged). Cheaper homes were overvalued more than twice as often as expensive homes &mdash; the same regressive pattern at the center of the real CCAO lawsuit.</p>
+
+            <div class="snippet-label">RMSE and overestimation rate across price brackets</div>
+            <img src="img/rmse-overestimation-chart.png" alt="Two bar charts: RMSE by log sale price interval, and percentage of house values overestimated by log sale price interval, both showing higher error and overestimation rates for cheaper homes" style="border-radius: 10px; border: 1px solid var(--color-border); margin-top: 4px;">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card expandable" style="grid-column: 1 / -1;">
+        <h3>Political &amp; Eugenic Implications of Dating App Algorithms</h3>
+        <p>A research paper examining how automated decision-making (ADM) and preemptive computing on dating apps shape who becomes visible, desirable, and matchable &mdash; and how these systems can reproduce discriminatory and soft-eugenic patterns under the guise of "scientific" compatibility matching. Argues that dating platforms convert political control over romantic visibility into eugenic-adjacent sorting by race, class, and appearance, while their business model actively rewards prolonged searching over successful matches.</p>
+        <div class="project-stack">Critical Analysis &middot; Algorithmic Bias &middot; Sociotechnical Systems</div>
+
+        <div>
+          <button class="project-toggle" data-target="detail-datingapp" style="margin-top: 14px;">
+            <span class="chevron">&#9656;</span> <span class="btn-label">Read more</span>
+          </button>
+        </div>
+
+        <div class="project-detail" id="detail-datingapp">
+          <div class="project-detail-inner">
+
+            <div class="snippet-label">Core argument</div>
+            <p style="font-size: 13px; color: var(--color-text); margin-bottom: 16px;">
+              Preemptive computing and ADM govern visibility and desirability on dating apps &mdash; producing <strong>political</strong> implications by structuring who gets access to potential partners, and <strong>eugenic</strong> implications by reinforcing similarity-based ideals about who "should" match.
+            </p>
+
+            <div class="snippet-label">Key points</div>
+            <ul style="font-size: 13px; color: var(--color-text); padding-left: 20px; line-height: 1.8; margin-bottom: 4px;">
+              <li>Dating app algorithms function as black-box "rulemaking" &mdash; users can't see or contest who is shown to them, shifting agency from the user to the platform.</li>
+              <li>Bias enters through training data, proxy filters (neighborhood, job title), and ranking systems that promote dominant norms &mdash; then compounds through collaborative filtering, which learns majority swiping behavior and suppresses minority profiles.</li>
+              <li>Some platforms (e.g. eHarmony) frame compatibility in explicitly biological/genetic terms, echoing historical eugenic logic around "fitness" for reproduction.</li>
+              <li>Platform business models profit from prolonged searching, not successful matches &mdash; creating a structural conflict between user goals and platform incentives.</li>
+            </ul>
+
+            <a href="papers/dating-app-algorithms.pdf" target="_blank" class="btn btn-outline" style="margin-top: 16px; display: inline-block;">Read full paper (PDF)</a>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      &copy; Made from scratch with me and Claude!
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.project-toggle').forEach(function (btn) {
+      var label = btn.querySelector('.btn-label');
+      var originalText = label.textContent;
+      btn.addEventListener('click', function () {
+        var target = document.getElementById(btn.getAttribute('data-target'));
+        var isOpen = btn.classList.toggle('open');
+        target.classList.toggle('open', isOpen);
+        label.textContent = isOpen ? 'Hide' : originalText;
+      });
+    });
+  </script>
+</body>
+</html>

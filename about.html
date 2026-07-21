@@ -25,14 +25,30 @@
       color: var(--color-text-muted);
       max-width: 560px;
     }
-    .about-blurb {
-      padding: 20px 0 10px;
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 40px;
+      padding: 30px 0 10px;
+      align-items: start;
+    }
+    .about-text p {
       font-size: 14px;
       color: var(--color-text-muted);
-      max-width: 620px;
-    }
-    .about-blurb p {
+      line-height: 1.7;
       margin-bottom: 14px;
+    }
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+    .about-photo img {
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+    }
+    @media (max-width: 700px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
     }
     .map-section {
       padding: 36px 0 60px;
@@ -86,22 +102,21 @@
     </nav>
 
     <header class="page-header">
-      <div class="eyebrow">About</div>
+      <div class="kicker">About</div>
       <h1>A bit more about me</h1>
     </header>
 
-      <section class="about-grid">
-    <div class="about-text">
-      <p>Data science BA from UC Berkeley, currently a Master's student at Trinity College Dublin studying Business Analytics and AI.</p>
-      <p>Long-term, I want to build a career at the intersection of people and data, figuring out what drives how people work, decide, and behave, and then building something useful out of it.</p>
-      <p>Outside of school and work, I'm probably planning a trip, mid-trip, or recovering from one. Traveling is one of the things I love most in life, and I'm always down to experience a new culture, flavor, or time zone.</p>
-      <p>When I'm not traveling, you'll find me hanging out with dogs, at a hot pilates class, or attempting a TikTok DIY project. I'm also weirdly obsessed with productivity systems, like Notion pages, bullet journaling, or anything color coded. Basically, I'm running a tiny people-analytics project on myself at all times.</p>
-    </div>
-    <div class="about-photo">
-      <img src="images/about-photo.jpg" alt="Aditi Chaurasia at UC Berkeley graduation">
-    </div>
-  </section>
- 
+    <section class="about-grid">
+      <div class="about-text">
+        <p>Data science BA from UC Berkeley, currently a Master's student at Trinity College Dublin studying Business Analytics and AI.</p>
+        <p>Long-term, I want to build a career at the intersection of people and data, figuring out what drives how people work, decide, and behave, and then building something useful out of it.</p>
+        <p>Outside of school and work, I'm probably planning a trip, mid-trip, or recovering from one. Traveling is one of the things I love most in life, and I'm always down to experience a new culture, flavor, or time zone.</p>
+        <p>When I'm not traveling, you'll find me hanging out with dogs, at a hot pilates class, or attempting a TikTok DIY project. I'm also weirdly obsessed with productivity systems, like Notion pages, bullet journaling, or anything color coded. Basically, I'm running a tiny people-analytics project on myself at all times.</p>
+      </div>
+      <div class="about-photo">
+        <img src="img/about-photo.jpg" alt="Aditi Chaurasia at UC Berkeley graduation">
+      </div>
+    </section>
 
     <section class="map-section">
       <h2>Where I've been</h2>

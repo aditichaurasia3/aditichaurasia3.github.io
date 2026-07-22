@@ -1,0 +1,12 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <text x="14" y="46"
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-weight="700"
+        font-size="42"
+        fill="#1E5A43">A</text>
+  <text x="30" y="46"
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-weight="700"
+        font-size="42"
+        fill="#1E5A43">C</text>
+</svg>

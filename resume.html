@@ -43,14 +43,14 @@
     }
     .exp-card {
       background: var(--color-card);
-      border: 1px solid var(--color-border);
+      border: 1px solid #E8C547;
       border-radius: 14px;
       padding: 18px 22px;
       cursor: pointer;
       transition: border-color 0.15s ease;
     }
     .exp-card:hover {
-      border-color: var(--color-green-mid);
+      border-color: #D4AF2C;
     }
     .exp-card-top {
       display: flex;
@@ -109,7 +109,7 @@
       padding-top: 14px;
       margin-top: 14px;
       border-top: 1px solid var(--color-border);
-      font-size: 13px;
+      font-size: 14.5px;
       color: var(--color-text-muted);
     }
     .exp-card-details-inner ul {
@@ -124,9 +124,9 @@
       font-weight: 700;
     }
     .exp-narrative-list {
-      font-size: 13px;
+      font-size: 14.5px;
       color: var(--color-text-muted);
-      line-height: 1.7;
+      line-height: 1.75;
     }
     .exp-narrative-list ul {
       list-style: none;
@@ -149,9 +149,13 @@
       font-family: var(--font-serif);
       font-weight: 600;
       font-size: 12.5px;
-      color: var(--color-terracotta, #C1653A);
+      color: var(--color-green);
       margin-bottom: 4px;
       margin-top: 16px;
+    }
+    .exp-narrative-label::before {
+      content: "— ";
+      color: var(--color-terracotta, #C1653A);
     }
     .exp-narrative-label:first-child {
       margin-top: 0;
@@ -277,7 +281,7 @@
                 <img src="img/logos/bbh.png" alt="Brown Brothers Harriman logo" class="exp-org-logo">
 
                 <div>
-                  <div class="exp-narrative-label">What it was</div>
+                  <div class="exp-narrative-label">What BBH is</div>
                   <div class="exp-narrative-text">Brown Brothers Harriman &amp; Co. (BBH) is the oldest and one of the largest private investment banks in the United States. I spent the summer on their Capital Partners side, which works with private businesses and wealthy families, in the Project Management office, where I oversaw various projects, mostly internal-facing.</div>
 
                   <div class="exp-narrative-label">Why it needed me</div>

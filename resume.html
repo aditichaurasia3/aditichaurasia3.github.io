@@ -103,7 +103,7 @@
       transition: max-height 0.25s ease;
     }
     .exp-card.open .exp-card-details {
-      max-height: 1200px;
+      max-height: 1800px;
     }
     .exp-card-details-inner {
       padding-top: 14px;
@@ -121,6 +121,27 @@
     .exp-card-details-inner li::before {
       content: "— ";
       color: var(--color-green-mid);
+    }
+    .exp-narrative-list {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+    .exp-narrative-list ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 0;
+    }
+    .exp-narrative-list li::before {
+      content: "— ";
+      color: var(--color-green-mid);
+    }
+    .exp-narrative-list li ul {
+      margin-top: 8px;
+      margin-left: 18px;
+      padding-left: 0;
     }
     .exp-narrative-label {
       font-family: var(--font-serif);
@@ -254,17 +275,36 @@
                 <img src="img/logos/bbh.png" alt="Brown Brothers Harriman logo" class="exp-org-logo">
 
                 <div>
-                  <div class="exp-narrative-label">What BBH is</div>
-                  <div class="exp-narrative-text">Brown Brothers Harriman is one of the oldest private banks in the US. I spent the summer on their Financial Services side, working with a developer-facing toolkit and the Capital Partners team, who handle the operational side of managing client accounts and vendor transactions.</div>
+                  <div class="exp-narrative-label">What it was</div>
+                  <div class="exp-narrative-text">Brown Brothers Harriman &amp; Co. (BBH) is the oldest and one of the largest private investment banks in the United States. I spent the summer on their Capital Partners side, which works with private businesses and wealthy families, in the Project Management office, where I oversaw various projects, mostly internal-facing.</div>
 
                   <div class="exp-narrative-label">Why it needed me</div>
-                  <div class="exp-narrative-text">A 60+ resource developer toolkit used by 300+ developers had no good way to search or surface documentation, so people were constantly re-asking questions that were technically already answered somewhere in there. Separately, Capital Partners was tracking sleeve reporting across 54 accounts with no shared system, and had no real visibility into the $8M+ in daily vendor transactions and invoices flowing through their operations.</div>
+                  <div class="exp-narrative-text">A developer toolkit (with resources like Jira and internal documentation) used by 300+ developers at BBH had no good way to search or surface information, so people kept re-asking questions that were technically already answered somewhere in there. The toolkit itself was underused relative to what it held, which meant a lot of duplicated effort and wasted time across teams that should have been avoidable.
+                  <br><br>
+                  Separately, Capital Partners was tracking sleeve reporting (the account-level breakdown of how client assets are allocated and tracked within a fund) across 54 accounts with no shared system. Each team was keeping its own version, which meant no one had a consistent, trustworthy view of an account's status without chasing down whoever owned that particular spreadsheet.
+                  <br><br>
+                  Finally, Capital Partners oversees $8M+ in annual vendor subscriptions and transactions, including tools like the Bloomberg Terminal. Invoices for these came in scattered across emails, individual team records, and disconnected files, with no single source of truth, so there was no clean way to see total vendor spend or catch discrepancies without manually piecing it together.</div>
 
-                  <div class="exp-narrative-label">What that looked like day to day</div>
-                  <div class="exp-narrative-text">I integrated Azure OpenAI APIs into the developer toolkit to add natural language search, so people could actually find documentation instead of guessing keywords or asking around — I presented the solution bank-wide, and it's currently pending deployment. On the Capital Partners side, I built out a Confluence page to standardize sleeve reporting across all 54 accounts, and separately built Excel and Power BI dashboards to make sense of the $8M+ in daily transactions and invoices.</div>
+                  <div class="exp-narrative-label">What my work looked like day to day</div>
+                  <div class="exp-narrative-list">
+                    <ul>
+                      <li>Integrated Azure OpenAI into the developer toolkit to add natural language search. BBH already had an enterprise contract with Microsoft's Azure/Copilot ecosystem, and Azure OpenAI's NLP processing was the strongest option available to us
+                        <ul>
+                          <li>Used a k-nearest neighbors approach to map user queries to the closest relevant docs by semantic similarity instead of relying on exact keyword matches, which surfaced more relevant documentation on broad searches while filtering out irrelevant matches</li>
+                          <li>Presented the solution bank-wide; it's currently pending deployment</li>
+                        </ul>
+                      </li>
+                      <li>Standardized sleeve reporting across all 54 Capital Partners accounts, which previously had no consistent format
+                        <ul>
+                          <li>Talked to people across the different arms of Capital Partners to understand how they actually used sleeve reporting day to day, then designed the Confluence page around that instead of a generic template, including cleaning up the visual layout</li>
+                        </ul>
+                      </li>
+                      <li>Built Excel and Power BI dashboards to make sense of the $8M+ in daily transactions and invoices, which meant pulling together data from a pile of inconsistent spreadsheets across the accounts team, with significant back-and-forth to track down the right source before the dashboard logic could even be built</li>
+                    </ul>
+                  </div>
 
                   <div class="exp-narrative-label">The impact</div>
-                  <div class="exp-narrative-text">The Confluence reporting page hit 100% adoption across Capital Partners, and the dashboards gave the team visibility into vendor spend they didn't have before. The AI search tool made it through a bank-wide presentation and is in line to actually ship.</div>
+                  <div class="exp-narrative-text">The Confluence page hit 100% adoption across Capital Partners and received positive feedback on its usability. The dashboards gave the team real visibility, with live charts, into vendor spend for the first time. The AI search tool was presented in a bank-wide meeting with the CFO and is in line to be deployed.</div>
                 </div>
 
               </div>
@@ -289,16 +329,28 @@
 
                 <div>
                   <div class="exp-narrative-label">What Henkel is</div>
-                  <div class="exp-narrative-text">Henkel owns a bunch of household CPG brands, and I worked with their Product Innovation team on making packaging more sustainable across those brand lines.</div>
+                  <div class="exp-narrative-text">Henkel owns a portfolio of household CPG brands, including Dial hand soap, Olaplex hair care, and Persil laundry detergent. I worked with their Product Innovation team on making packaging more sustainable across several of those brand lines, as part of a company-wide push toward carbon neutrality.</div>
 
                   <div class="exp-narrative-label">Why it needed me</div>
-                  <div class="exp-narrative-text">Some of their CPG brand lines were still relying heavily on plastic packaging, and no one had actually mapped out which alternative materials were realistic once you factored in real cost tradeoffs.</div>
+                  <div class="exp-narrative-text">Some of Henkel's CPG brand lines, like Dial hand soap, were still relying heavily on plastic packaging, and no one had mapped out which alternative materials were actually viable once you factored in real-world tradeoffs. Supply chain and materials sourcing were genuinely outside my background, so I had to learn as I went and lean on my team as a major resource.</div>
 
-                  <div class="exp-narrative-label">What that looked like day to day</div>
-                  <div class="exp-narrative-text">I benchmarked competitors and ran a cost-benefit analysis across 20+ alternative materials, then designed plastic-free packaging models projected to cut plastic use across the brand lines by 40%. I also led stakeholder meetings with a cross-functional R&amp;D team, translating their materials science data into 18 actual prototypes, and presented the recommendations to company leadership.</div>
+                  <div class="exp-narrative-label">What my work looked like day to day</div>
+                  <div class="exp-narrative-list">
+                    <ul>
+                      <li>Evaluated 20+ alternative packaging materials, including options like mycelium-based packaging, molded pulp, and recycled PET, against three metrics: cost per unit, availability, and recyclability
+                        <ul>
+                          <li>The final practical filter was whether a manufacturer or supplier actually offered the material and had the means to work with it at scale</li>
+                        </ul>
+                      </li>
+                      <li>Built a script to scrape and parse material specs and data from published journals and industry papers, then organized it into a clean, structured comparison instead of manually digging through sources one by one</li>
+                      <li>Led the research effort across my 7-person cross-functional grad student team by splitting up work by material category so no one duplicated effort, using Asana to assign and track ownership and Notion to build a shared, standardized template so everyone logged findings in the same format</li>
+                      <li>Designed plastic-free packaging models projected to cut plastic use across the brand lines by 40%, then brought those designs to life using Illustrator and Photoshop for the visual concepts and foam core and Figma for physical and digital prototyping</li>
+                      <li>Presented the mockups to Henkel's R&amp;D team and company leadership to get technical feedback and sign-off before finalizing recommendations</li>
+                    </ul>
+                  </div>
 
                   <div class="exp-narrative-label">The impact</div>
-                  <div class="exp-narrative-text">Leadership walked away with a concrete, costed path to a 40% plastic reduction and 18 real prototypes to show for it, not just a proposal.</div>
+                  <div class="exp-narrative-text">Leadership walked away with a concrete, costed path to a 40% plastic reduction and 18 real prototypes to show for it. It was also the project that taught me how to get up to speed fast in an area I had zero background in, and how much of that speed came from knowing how to organize a team rather than trying to figure it all out myself.</div>
                 </div>
 
               </div>

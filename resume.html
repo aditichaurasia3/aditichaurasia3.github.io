@@ -77,9 +77,10 @@
     }
     .exp-card-meta {
       font-size: 12px;
-      color: var(--color-text-faint);
+      color: var(--color-terracotta, #C1653A);
       white-space: nowrap;
       margin-top: 2px;
+      font-weight: 600;
     }
     .exp-toggle {
       width: 22px;
@@ -119,8 +120,9 @@
       gap: 6px;
     }
     .exp-card-details-inner li::before {
-      content: "— ";
-      color: var(--color-green-mid);
+      content: "•  ";
+      color: var(--color-terracotta, #C1653A);
+      font-weight: 700;
     }
     .exp-narrative-list {
       font-size: 13px;
@@ -135,8 +137,9 @@
       padding-left: 0;
     }
     .exp-narrative-list li::before {
-      content: "— ";
-      color: var(--color-green-mid);
+      content: "•  ";
+      color: var(--color-terracotta, #C1653A);
+      font-weight: 700;
     }
     .exp-narrative-list li ul {
       margin-top: 8px;
@@ -147,7 +150,7 @@
       font-family: var(--font-serif);
       font-weight: 600;
       font-size: 12.5px;
-      color: var(--color-green-mid);
+      color: var(--color-terracotta, #C1653A);
       margin-bottom: 4px;
       margin-top: 16px;
     }
@@ -275,7 +278,7 @@
                 <img src="img/logos/bbh.png" alt="Brown Brothers Harriman logo" class="exp-org-logo">
 
                 <div>
-                  <div class="exp-narrative-label">What it was</div>
+                  <div class="exp-narrative-label">What BBH is</div>
                   <div class="exp-narrative-text">Brown Brothers Harriman &amp; Co. (BBH) is the oldest and one of the largest private investment banks in the United States. I spent the summer on their Capital Partners side, which works with private businesses and wealthy families, in the Project Management office, where I oversaw various projects, mostly internal-facing.</div>
 
                   <div class="exp-narrative-label">Why it needed me</div>
@@ -573,7 +576,7 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      &copy; Made from scratch with me and Claude
+      &copy; Made from scratch with me and Claude!
     </div>
   </footer>
 

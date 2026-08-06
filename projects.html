@@ -33,9 +33,14 @@
     }
     .project-card {
       background: var(--color-card);
-      border: 1px solid var(--color-border);
+      border: 1px solid var(--color-green);
       border-radius: 16px;
       padding: 24px;
+      transition: border-color 0.15s ease;
+    }
+    .project-card:hover,
+    .project-card.open {
+      border-color: var(--color-terracotta, #C1653A);
     }
     .project-card h3 {
       font-family: var(--font-serif);
@@ -45,7 +50,8 @@
       margin-bottom: 8px;
     }
     .project-card p {
-      font-size: 13px;
+      font-size: 14.5px;
+      line-height: 1.75;
       color: var(--color-text-muted);
       margin-bottom: 14px;
     }
@@ -58,6 +64,37 @@
       padding: 5px 12px;
       border-radius: 10px;
     }
+
+    /* --- Overrides for detail/snippet content pulled in from css/style.css --- */
+    .project-detail-inner,
+    .project-detail-inner p,
+    .project-detail-inner li,
+    .code-block,
+    .code-block pre {
+      font-size: 14.5px !important;
+      line-height: 1.75 !important;
+    }
+    .snippet-label {
+      color: var(--color-terracotta, #C1653A) !important;
+      font-weight: 600;
+    }
+    /* Remove the accent-colored side/row borders on output tables */
+    .output-table-wrap table.output-table,
+    .output-table-wrap table.output-table tr,
+    .output-table-wrap table.output-table td,
+    .output-table-wrap table.output-table th {
+      border-left: none !important;
+      border-right: none !important;
+      box-shadow: none !important;
+    }
+    .output-table-wrap table.output-table tr {
+      border-top: none !important;
+      border-bottom: 1px solid var(--color-border) !important;
+    }
+    .output-table-wrap table.output-table thead tr {
+      border-bottom: 1px solid var(--color-border) !important;
+    }
+
     @media (max-width: 700px) {
       .project-grid { grid-template-columns: 1fr; }
     }
@@ -82,67 +119,6 @@
     </header>
 
     <section class="project-grid">
-
-      <div class="project-card expandable" style="grid-column: 1 / -1;">
-        <h3>UC Berkeley Building Sensor Data Cleaning</h3>
-        <p>Worked with a real building-sensor dataset from a decade long Berkeley research study &mdash; a messy real-world database with billions of readings, inconsistent metadata, and OCR errors in the source tables. I used entity resolution to match records that referred to the same sensor but were labeled inconsistently, outlier detection to catch faulty sensor readings without deleting real (if extreme) values, and missing-data imputation to fill gaps without introducing bias. I also wrote ontology roll-up queries to group thousands of sensors into meaningful categories, since the raw metadata was too messy to analyze directly. All done in raw Postgres SQL, no Pandas required.</p>
-        <div class="project-stack">PostgreSQL &middot; CTEs &middot; Window Functions &middot; Recursive Queries</div>
-
-        <div>
-          <button class="project-toggle" data-target="detail-data101" style="margin-top: 14px;">
-            <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
-          </button>
-        </div>
-
-        <div class="project-detail" id="detail-data101">
-          <div class="project-detail-inner">
-
-            <div class="snippet-label">Outlier detection &amp; Winsorization (Hampel X84 method)</div>
-            <div class="code-block"><pre><span class="kw">CREATE VIEW</span> cleaned_data <span class="kw">AS</span>
-<span class="kw">SELECT</span>
-    time, id, value, median, mad, is_outlier,
-    <span class="kw">CASE</span>
-        <span class="kw">WHEN</span> mad = 0 <span class="kw">THEN</span> value
-        <span class="kw">WHEN NOT</span> is_outlier <span class="kw">THEN</span> value
-        <span class="kw">WHEN</span> value > median
-            <span class="kw">THEN</span> median + 3 * 1.4826 * mad
-        <span class="kw">ELSE</span>
-            median - 3 * 1.4826 * mad
-    <span class="kw">END AS</span> clean_value
-<span class="kw">FROM</span> labeled_data;</pre></div>
-
-            <div class="output-table-wrap">
-              <table class="output-table">
-                <thead>
-                  <tr><th>id</th><th>value</th><th>median</th><th>mad</th><th>is_outlier</th><th>clean_value</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>a481d4a8&hellip;</td><td>812.6</td><td>727.5</td><td>16.2</td><td class="output-flag-true">true</td><td>799.55</td></tr>
-                  <tr><td>a51d3bed&hellip;</td><td>75.0</td><td>6.19</td><td>4.96</td><td class="output-flag-true">true</td><td>28.23</td></tr>
-                  <tr><td>a71fbdfd&hellip;</td><td>122.9</td><td>58.7</td><td>35.7</td><td class="output-flag-false">false</td><td>122.90</td></tr>
-                  <tr><td>a744b292&hellip;</td><td>107.0</td><td>74.0</td><td>18.0</td><td class="output-flag-false">false</td><td>107.00</td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="snippet-label">Ontology roll-up: counting sensors by category (recursive graph query)</div>
-            <div class="code-block"><pre><span class="kw">WITH</span> sensor_children <span class="kw">AS</span> (
-    <span class="kw">SELECT</span> subject <span class="kw">AS</span> sensor_child
-    <span class="kw">FROM</span> ontology
-    <span class="kw">WHERE</span> object = <span class="fn">'Brick#Sensor'</span>
-        <span class="kw">AND</span> predicate = <span class="fn">'subClassOf'</span>
-)
-<span class="kw">SELECT</span> sc.sensor_child, <span class="kw">COUNT</span>(<span class="kw">DISTINCT</span> md.id) <span class="kw">AS</span> count
-<span class="kw">FROM</span> metadata <span class="kw">AS</span> md
-<span class="kw">INNER JOIN</span> mapping <span class="kw">AS</span> map <span class="kw">ON</span> md.class = map.rawname
-<span class="kw">INNER JOIN</span> transitive_subClassOf <span class="kw">AS</span> t <span class="kw">ON</span> map.brickclass = t.subject
-<span class="kw">INNER JOIN</span> sensor_children <span class="kw">AS</span> sc <span class="kw">ON</span> t.object = sc.sensor_child
-<span class="kw">GROUP BY</span> sc.sensor_child
-<span class="kw">ORDER BY</span> sc.sensor_child;</pre></div>
-
-          </div>
-        </div>
-      </div>
 
       <div class="project-card expandable" style="grid-column: 1 / -1;">
         <h3>Transformer Encoder/Decoder from Scratch</h3>
@@ -209,12 +185,12 @@
           <div class="project-detail-inner">
 
             <div class="snippet-label">Core argument</div>
-            <p style="font-size: 13px; color: var(--color-text); margin-bottom: 16px;">
+            <p style="font-size: 14.5px; color: var(--color-text); margin-bottom: 16px;">
               Preemptive computing and ADM govern visibility and desirability on dating apps &mdash; producing <strong>political</strong> implications by structuring who gets access to potential partners, and <strong>eugenic</strong> implications by reinforcing similarity-based ideals about who "should" match.
             </p>
 
             <div class="snippet-label">Key points</div>
-            <ul style="font-size: 13px; color: var(--color-text); padding-left: 20px; line-height: 1.8; margin-bottom: 4px;">
+            <ul style="font-size: 14.5px; color: var(--color-text); padding-left: 20px; line-height: 1.8; margin-bottom: 4px;">
               <li>Dating app algorithms function as black-box "rulemaking" &mdash; users can't see or contest who is shown to them, shifting agency from the user to the platform.</li>
               <li>Bias enters through training data, proxy filters (neighborhood, job title), and ranking systems that promote dominant norms &mdash; then compounds through collaborative filtering, which learns majority swiping behavior and suppresses minority profiles.</li>
               <li>Some platforms (e.g. eHarmony) frame compatibility in explicitly biological/genetic terms, echoing historical eugenic logic around "fitness" for reproduction.</li>
@@ -227,7 +203,7 @@
         </div>
       </div>
 
-    <div class="project-card expandable" style="grid-column: 1 / -1;">
+      <div class="project-card expandable" style="grid-column: 1 / -1;">
         <h3>Vision Transformer &amp; Masked Autoencoder</h3>
         <p>Implemented a Vision Transformer (ViT) and a Masked Autoencoder (MAE) from scratch in PyTorch, then compared three training strategies on CIFAR-10 image classification: supervised ViT from scratch, MAE self-supervised pretraining + linear probing, and full finetuning. I wanted to test how well a model could learn to understand images without needing labeled data for every single one &mdash; a big deal in the real world, where labeled data is expensive and limited. The self-supervised MAE model learns to reconstruct images from as little as 25% of the original pixels, forcing it to learn the underlying structure of an image rather than memorizing surface details.</p>
         <div class="project-stack">PyTorch &middot; Vision Transformers &middot; Self-Supervised Learning &middot; einops</div>
@@ -287,6 +263,67 @@
       </div>
 
       <div class="project-card expandable" style="grid-column: 1 / -1;">
+        <h3>UC Berkeley Building Sensor Data Cleaning</h3>
+        <p>Worked with a real building-sensor dataset from a decade long Berkeley research study &mdash; a messy real-world database with billions of readings, inconsistent metadata, and OCR errors in the source tables. I used entity resolution to match records that referred to the same sensor but were labeled inconsistently, outlier detection to catch faulty sensor readings without deleting real (if extreme) values, and missing-data imputation to fill gaps without introducing bias. I also wrote ontology roll-up queries to group thousands of sensors into meaningful categories, since the raw metadata was too messy to analyze directly. All done in raw Postgres SQL, no Pandas required.</p>
+        <div class="project-stack">PostgreSQL &middot; CTEs &middot; Window Functions &middot; Recursive Queries</div>
+
+        <div>
+          <button class="project-toggle" data-target="detail-data101" style="margin-top: 14px;">
+            <span class="chevron">&#9656;</span> <span class="btn-label">View code</span>
+          </button>
+        </div>
+
+        <div class="project-detail" id="detail-data101">
+          <div class="project-detail-inner">
+
+            <div class="snippet-label">Outlier detection &amp; Winsorization (Hampel X84 method)</div>
+            <div class="code-block"><pre><span class="kw">CREATE VIEW</span> cleaned_data <span class="kw">AS</span>
+<span class="kw">SELECT</span>
+    time, id, value, median, mad, is_outlier,
+    <span class="kw">CASE</span>
+        <span class="kw">WHEN</span> mad = 0 <span class="kw">THEN</span> value
+        <span class="kw">WHEN NOT</span> is_outlier <span class="kw">THEN</span> value
+        <span class="kw">WHEN</span> value > median
+            <span class="kw">THEN</span> median + 3 * 1.4826 * mad
+        <span class="kw">ELSE</span>
+            median - 3 * 1.4826 * mad
+    <span class="kw">END AS</span> clean_value
+<span class="kw">FROM</span> labeled_data;</pre></div>
+
+            <div class="output-table-wrap">
+              <table class="output-table">
+                <thead>
+                  <tr><th>id</th><th>value</th><th>median</th><th>mad</th><th>is_outlier</th><th>clean_value</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>a481d4a8&hellip;</td><td>812.6</td><td>727.5</td><td>16.2</td><td class="output-flag-true">true</td><td>799.55</td></tr>
+                  <tr><td>a51d3bed&hellip;</td><td>75.0</td><td>6.19</td><td>4.96</td><td class="output-flag-true">true</td><td>28.23</td></tr>
+                  <tr><td>a71fbdfd&hellip;</td><td>122.9</td><td>58.7</td><td>35.7</td><td class="output-flag-false">false</td><td>122.90</td></tr>
+                  <tr><td>a744b292&hellip;</td><td>107.0</td><td>74.0</td><td>18.0</td><td class="output-flag-false">false</td><td>107.00</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="snippet-label">Ontology roll-up: counting sensors by category (recursive graph query)</div>
+            <div class="code-block"><pre><span class="kw">WITH</span> sensor_children <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> subject <span class="kw">AS</span> sensor_child
+    <span class="kw">FROM</span> ontology
+    <span class="kw">WHERE</span> object = <span class="fn">'Brick#Sensor'</span>
+        <span class="kw">AND</span> predicate = <span class="fn">'subClassOf'</span>
+)
+<span class="kw">SELECT</span> sc.sensor_child, <span class="kw">COUNT</span>(<span class="kw">DISTINCT</span> md.id) <span class="kw">AS</span> count
+<span class="kw">FROM</span> metadata <span class="kw">AS</span> md
+<span class="kw">INNER JOIN</span> mapping <span class="kw">AS</span> map <span class="kw">ON</span> md.class = map.rawname
+<span class="kw">INNER JOIN</span> transitive_subClassOf <span class="kw">AS</span> t <span class="kw">ON</span> map.brickclass = t.subject
+<span class="kw">INNER JOIN</span> sensor_children <span class="kw">AS</span> sc <span class="kw">ON</span> t.object = sc.sensor_child
+<span class="kw">GROUP BY</span> sc.sensor_child
+<span class="kw">ORDER BY</span> sc.sensor_child;</pre></div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card expandable" style="grid-column: 1 / -1;">
         <h3>Auditing a Housing Assessment Model for Bias</h3>
         <p>Built a linear regression model to predict home sale prices for Cook County, Illinois (home of Chicago) &mdash; the same kind of model the Cook County Assessor's Office uses to set property tax assessments. In 2017, the CCAO was sued for producing racially discriminatory assessments that systematically overvalued inexpensive homes and undervalued expensive ones (a pattern known as regressive taxation) &mdash; in effect, lower-income homeowners ended up paying unfairly high taxes relative to their home's actual value, while wealthier homeowners got away with paying comparatively less. I wanted to see whether an independently built model would fall into the same trap, so after building mine, I compared its errors across price brackets to check whether it reproduced that same regressive pattern &mdash; it did.</p>
         <div class="project-stack">Python &middot; pandas &middot; scikit-learn &middot; Linear Regression &middot; Feature Engineering</div>
@@ -334,7 +371,7 @@
                 </tbody>
               </table>
             </div>
-            <p style="font-size: 12.5px; color: var(--color-text-muted); margin-top: 10px;">Training RMSE: 53,722 (on Sale Price, delogged). Cheaper homes were overvalued more than twice as often as expensive homes &mdash; the same regressive pattern at the center of the real CCAO lawsuit.</p>
+            <p style="font-size: 13.5px; color: var(--color-text-muted); margin-top: 10px;">Training RMSE: 53,722 (on Sale Price, delogged). Cheaper homes were overvalued more than twice as often as expensive homes &mdash; the same regressive pattern at the center of the real CCAO lawsuit.</p>
 
             <div class="snippet-label">RMSE and overestimation rate across price brackets</div>
             <img src="img/rmse-overestimation-chart.png" alt="Two bar charts: RMSE by log sale price interval, and percentage of house values overestimated by log sale price interval, both showing higher error and overestimation rates for cheaper homes" style="border-radius: 10px; border: 1px solid var(--color-border); margin-top: 4px;">
@@ -356,10 +393,12 @@
     document.querySelectorAll('.project-toggle').forEach(function (btn) {
       var label = btn.querySelector('.btn-label');
       var originalText = label.textContent;
+      var card = btn.closest('.project-card');
       btn.addEventListener('click', function () {
         var target = document.getElementById(btn.getAttribute('data-target'));
         var isOpen = btn.classList.toggle('open');
         target.classList.toggle('open', isOpen);
+        if (card) { card.classList.toggle('open', isOpen); }
         label.textContent = isOpen ? 'Hide' : originalText;
       });
     });

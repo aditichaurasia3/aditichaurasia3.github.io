@@ -33,14 +33,14 @@
     }
     .project-card {
       background: var(--color-card);
-      border: 1px solid var(--color-green);
+      border: 1px solid var(--color-border);
       border-radius: 16px;
       padding: 24px;
       transition: border-color 0.15s ease;
     }
     .project-card:hover,
     .project-card.open {
-      border-color: var(--color-terracotta, #C1653A);
+      border-color: var(--color-green-mid);
     }
     .project-card h3 {
       font-family: var(--font-serif);
@@ -75,24 +75,8 @@
       line-height: 1.75 !important;
     }
     .snippet-label {
-      color: var(--color-terracotta, #C1653A) !important;
+      color: var(--color-accent) !important;
       font-weight: 600;
-    }
-    /* Remove the accent-colored side/row borders on output tables */
-    .output-table-wrap table.output-table,
-    .output-table-wrap table.output-table tr,
-    .output-table-wrap table.output-table td,
-    .output-table-wrap table.output-table th {
-      border-left: none !important;
-      border-right: none !important;
-      box-shadow: none !important;
-    }
-    .output-table-wrap table.output-table tr {
-      border-top: none !important;
-      border-bottom: 1px solid var(--color-border) !important;
-    }
-    .output-table-wrap table.output-table thead tr {
-      border-bottom: 1px solid var(--color-border) !important;
     }
 
     @media (max-width: 700px) {

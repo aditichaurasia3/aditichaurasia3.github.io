@@ -16,6 +16,7 @@
   --color-text: #000000;
   --color-text-muted: #000000;
   --color-text-faint: #5B6B62;
+  --color-grey: #999999; /* footer / light-grey utility */
   --font-bold: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-light: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --max-width: 1000px;
@@ -56,6 +57,27 @@ img {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 28px;
+}
+
+/* ============================
+   Page header (used on resume/projects/about)
+   ============================ */
+.page-header {
+  padding: 50px 0 10px;
+}
+
+.page-header h1 {
+  font-family: var(--font-bold); font-weight: 700;
+  font-size: 30px;
+  color: var(--color-green-dark);
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  font-family: var(--font-light); font-weight: 380;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  max-width: 520px;
 }
 
 /* ============================
@@ -102,8 +124,8 @@ img {
 .nav-links {
   display: flex;
   gap: 32px;
+  font-family: var(--font-bold); font-weight: 600;
   font-size: 13px;
-  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-text-faint);
@@ -167,9 +189,8 @@ img {
 }
 
 .hero-note-label {
-  font-family: var(--font-light); font-weight: 380;
+  font-family: var(--font-bold); font-weight: 700;
   font-size: 11px;
-  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -188,8 +209,7 @@ img {
    ============================ */
 .btn {
   display: inline-block;
-  font-family: var(--font-light); font-weight: 380;
-  font-weight: 600;
+  font-family: var(--font-bold); font-weight: 600;
   font-size: 13.5px;
   padding: 11px 24px;
   border-radius: 3px;
@@ -207,8 +227,7 @@ img {
 }
 
 .btn-link {
-  font-family: var(--font-light); font-weight: 380;
-  font-weight: 600;
+  font-family: var(--font-bold); font-weight: 600;
   font-size: 13.5px;
   color: var(--color-green);
   border-bottom: 1.5px solid var(--color-green);
@@ -271,14 +290,14 @@ img {
 }
 
 /* ============================
-   Footer
+   Footer — consistent across all pages, no divider line
    ============================ */
 .site-footer {
   padding: 24px 0;
   margin-top: 60px;
+  font-family: var(--font-light); font-weight: 380;
   font-size: 13.5px;
-  color: var(--color-green-mid);
-  border-top: 1px solid var(--color-rule);
+  color: var(--color-grey);
 }
 
 /* ============================
@@ -295,6 +314,61 @@ img {
 }
 
 /* ============================
+   Shared card system — resume (.exp-card) + projects (.project-card)
+   Same grey border, same terracotta hover, same title size, same body size
+   ============================ */
+.exp-card,
+.project-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 18px 22px;
+  transition: border-color 0.15s ease;
+}
+
+.exp-card:hover,
+.exp-card.open,
+.project-card:hover,
+.project-card.open {
+  border-color: var(--color-accent);
+}
+
+.exp-card-title,
+.project-card h3 {
+  font-family: var(--font-bold); font-weight: 700;
+  font-size: 15px;
+  color: var(--color-green-dark);
+}
+
+.project-card h3 {
+  margin-bottom: 8px;
+}
+
+.project-card p,
+.exp-narrative-text,
+.exp-narrative-list,
+.about-text p {
+  font-family: var(--font-light); font-weight: 380;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+}
+
+.project-card p {
+  margin-bottom: 14px;
+}
+
+.project-stack {
+  display: inline-block;
+  background: var(--color-green-light);
+  color: var(--color-green);
+  font-family: var(--font-bold); font-weight: 600;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 10px;
+}
+
+/* ============================
    Expandable project cards (code + output)
    ============================ */
 
@@ -305,8 +379,7 @@ img {
 .project-toggle {
   background: none;
   border: none;
-  font-family: var(--font-light); font-weight: 380;
-  font-weight: 600;
+  font-family: var(--font-bold); font-weight: 600;
   font-size: 13px;
   color: var(--color-green);
   cursor: pointer;
@@ -347,8 +420,8 @@ img {
 }
 
 .snippet-label {
+  font-family: var(--font-bold); font-weight: 600;
   font-size: 12.5px;
-  font-weight: 600;
   color: var(--color-green-mid);
   margin-bottom: 8px;
   margin-top: 18px;
@@ -395,7 +468,7 @@ img {
 .output-table th {
   background: var(--color-green-light);
   color: var(--color-green-dark);
-  font-weight: 600;
+  font-family: var(--font-bold); font-weight: 600;
   text-align: left;
   padding: 8px 12px;
   white-space: nowrap;
@@ -420,4 +493,244 @@ img {
 
 .output-flag-false {
   color: var(--color-text-faint);
+}
+
+/* ============================
+   Resume-specific card internals (structure, not colors/sizes)
+   ============================ */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.exp-card {
+  cursor: pointer;
+}
+
+.exp-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.exp-org-name {
+  font-weight: 700;
+  color: var(--color-green-dark);
+}
+
+.exp-role-name {
+  font-weight: 400;
+  color: var(--color-green);
+}
+
+.exp-card-sub {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 3px;
+}
+
+.exp-card-meta {
+  font-size: 12px;
+  color: var(--color-text-faint);
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.exp-toggle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-green-light);
+  color: var(--color-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.exp-card.open .exp-toggle {
+  transform: rotate(45deg);
+}
+
+.exp-card-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.exp-card.open .exp-card-details {
+  max-height: 1800px;
+}
+
+.exp-card-details-inner {
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
+
+.exp-narrative-list ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 0;
+}
+
+.exp-narrative-list li::before {
+  content: "•  ";
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.exp-narrative-list li ul {
+  margin-top: 8px;
+  margin-left: 18px;
+  padding-left: 0;
+}
+
+.exp-narrative-label {
+  font-family: var(--font-bold); font-weight: 600;
+  font-size: 12.5px;
+  color: var(--color-green);
+  margin-bottom: 4px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exp-narrative-label::before {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  background-color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.exp-narrative-label:first-child {
+  margin-top: 0;
+}
+
+.exp-detail-layout {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+.exp-org-logo {
+  width: 100%;
+  height: auto;
+  max-width: 96px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .exp-detail-layout {
+    grid-template-columns: 1fr;
+  }
+  .exp-org-logo {
+    max-width: 64px;
+    margin-bottom: 4px;
+  }
+}
+
+/* ============================
+   Projects page grid
+   ============================ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  padding-bottom: 60px;
+}
+
+@media (max-width: 700px) {
+  .project-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================
+   About page
+   ============================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  padding: 30px 0 10px;
+  align-items: center;
+}
+
+.about-text p {
+  margin-bottom: 14px;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+.about-photo {
+  display: flex;
+  justify-content: center;
+}
+
+.about-photo img {
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  width: auto;
+  max-width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+@media (max-width: 700px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.map-section {
+  padding: 36px 0 60px;
+}
+
+.map-section h2 {
+  font-family: var(--font-bold); font-weight: 600;
+  font-size: 18px;
+  color: var(--color-green);
+  margin-bottom: 6px;
+}
+
+.map-section .map-sub {
+  font-size: 13px;
+  color: var(--color-text-faint);
+  margin-bottom: 16px;
+}
+
+#travel-map {
+  height: 420px;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  z-index: 1;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  font-family: var(--font-light);
+}
+
+.popup-title {
+  font-family: var(--font-bold); font-weight: 600;
+  font-size: 14px;
+  color: var(--color-green-dark);
+  margin-bottom: 4px;
+}
+
+.popup-note {
+  font-size: 12px;
+  color: var(--color-text-muted);
 }

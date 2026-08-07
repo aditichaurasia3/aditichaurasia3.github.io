@@ -3,196 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <title>Resume — Aditi Chaurasia</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Mulish:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .page-header {
-      padding: 50px 0 10px;
-    }
-    .page-header h1 {
-      font-family: var(--font-serif);
-      font-weight: 600;
-      font-size: 30px;
-      color: var(--color-green-dark);
-      margin-bottom: 8px;
-    }
-    .page-header p {
-      font-size: 14px;
-      color: var(--color-text-muted);
-      max-width: 520px;
-    }
     .resume-section {
       padding: 36px 0 8px;
     }
     .resume-section h2 {
-      font-family: var(--font-serif);
-      font-weight: 600;
+      font-family: var(--font-bold); font-weight: 600;
       font-size: 18px;
       color: var(--color-green);
       margin-bottom: 16px;
-    }
-    .card-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 30px;
-    }
-    .exp-card {
-      background: var(--color-card);
-      border: 1px solid var(--color-green);
-      border-radius: 14px;
-      padding: 18px 22px;
-      cursor: pointer;
-      transition: border-color 0.15s ease;
-    }
-    .exp-card:hover,
-    .exp-card.open {
-      border-color: var(--color-terracotta, #C1653A);
-    }
-    .exp-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .exp-card-title {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 15px;
-    }
-    .exp-org-name {
-      font-weight: 700;
-      color: var(--color-green-dark);
-    }
-    .exp-role-name {
-      font-weight: 400;
-      color: var(--color-green);
-    }
-    .exp-card-sub {
-      font-size: 13px;
-      color: var(--color-text-muted);
-      margin-top: 3px;
-    }
-    .exp-card-meta {
-      font-size: 12px;
-      color: var(--color-text-faint);
-      white-space: nowrap;
-      margin-top: 2px;
-    }
-    .exp-toggle {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--color-green-light);
-      color: var(--color-green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
-      transition: transform 0.2s ease;
-    }
-    .exp-card.open .exp-toggle {
-      transform: rotate(45deg);
-    }
-    .exp-card-details {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.25s ease;
-    }
-    .exp-card.open .exp-card-details {
-      max-height: 1800px;
-    }
-    .exp-card-details-inner {
-      padding-top: 14px;
-      margin-top: 14px;
-      border-top: 1px solid var(--color-border);
-      font-size: 14.5px;
-      color: var(--color-text-muted);
-    }
-    .exp-card-details-inner ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .exp-card-details-inner li::before {
-      content: "•  ";
-      color: var(--color-terracotta, #C1653A);
-      font-weight: 700;
-    }
-    .exp-narrative-list {
-      font-size: 14.5px;
-      color: var(--color-text-muted);
-      line-height: 1.75;
-    }
-    .exp-narrative-list ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding-left: 0;
-    }
-    .exp-narrative-list li::before {
-      content: "•  ";
-      color: var(--color-terracotta, #C1653A);
-      font-weight: 700;
-    }
-    .exp-narrative-list li ul {
-      margin-top: 8px;
-      margin-left: 18px;
-      padding-left: 0;
-    }
-    .exp-narrative-label {
-      font-family: var(--font-serif);
-      font-weight: 600;
-      font-size: 12.5px;
-      color: var(--color-green);
-      margin-bottom: 4px;
-      margin-top: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .exp-narrative-label::before {
-      content: "";
-      display: inline-block;
-      width: 28px;
-      height: 2px;
-      background-color: var(--color-terracotta, #C1653A);
-      flex-shrink: 0;
-    }
-    .exp-narrative-label:first-child {
-      margin-top: 0;
-    }
-    .exp-narrative-text {
-      font-size: 14.5px;
-      color: var(--color-text-muted);
-      line-height: 1.75;
-    }
-    .exp-detail-layout {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 26px;
-      align-items: start;
-    }
-    .exp-org-logo {
-      width: 100%;
-      height: auto;
-      max-width: 96px;
-      display: block;
-    }
-    @media (max-width: 600px) {
-      .exp-detail-layout {
-        grid-template-columns: 1fr;
-      }
-      .exp-org-logo {
-        max-width: 64px;
-        margin-bottom: 4px;
-      }
     }
   </style>
 </head>
@@ -653,7 +475,7 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      &copy; Made from scratch with me and Claude :D
+      &copy; Made from scratch by me and Claude :D
     </div>
   </footer>
 
